@@ -29,7 +29,7 @@ const routes: Routes = [
         } as BreadcrumbData
       },
       {
-        path: RoutesEnum.MANAGEMENT,
+        path: RoutesEnum.CLIENTI,
         children: [
           {
             path: '',
@@ -53,11 +53,11 @@ const routes: Routes = [
             } as BreadcrumbData
           },
           {
-            path: RoutesEnum.RESOURCES,
+            path: RoutesEnum.ELENCO_CLIENTI,
             loadChildren: () => import('../modules/partners/resources/resources.module').then((m) => m.ResourcesModule),
             data: {
               title: 'RESOURCES.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.RESOURCES]
+              breadcrumb: [RoutesEnum.ELENCO_CLIENTI]
             } as BreadcrumbData
           },
           {
@@ -71,14 +71,14 @@ const routes: Routes = [
         ]
       },
       {
-        path: RoutesEnum.OFFICIAL_TRIGRAMS,
+        path: RoutesEnum.LICENZE,
         children: [
           {
-            path: RoutesEnum.OPERATIONS_TRIGRAMS,
+            path: RoutesEnum.ELENCO_LICENZE,
             loadChildren: () => import('../modules/partners/official-trigrams/official-trigrams.module').then((m) => m.OfficialTrigramsModule),
             data: {
               title: 'OFFICIAL_TRIGRAMS.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.OPERATIONS_TRIGRAMS]
+              breadcrumb: [RoutesEnum.ELENCO_LICENZE]
             } as BreadcrumbData
           }
         ]
@@ -140,6 +140,7 @@ const routes: Routes = [
           }
         ]
       },
+      /*
       {
         path: RoutesEnum.IMPORT_OVERVIEW,
         children: [
@@ -161,6 +162,7 @@ const routes: Routes = [
          }
         ]
       },
+      */
     ]
   }
 ];

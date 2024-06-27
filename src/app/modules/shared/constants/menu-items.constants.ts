@@ -1,18 +1,23 @@
-import { Role } from "@shared/enums/role.enum";
 import { RoutesEnum } from "src/app/core/routes.enum";
 import { ROLE_VISIBILITY } from "./role-visibility.constants";
-import { title } from "process";
-import { Content } from "@angular/compiler/src/render3/r3_ast";
-import { link } from "fs";
-import { ICON_REGISTRY_PROVIDER } from "@angular/material/icon";
+
 
 export const MENU_ITEMS = [
     {
-      title: 'MENU.SIDENAV.MANAGEMENT',
+      title: 'MENU.SIDENAV.CLIENTI',
       icon: 'settings',
-      content: RoutesEnum.MANAGEMENT,
-      permission: ROLE_VISIBILITY.RESOURCES,
+      content: RoutesEnum.ELENCO_CLIENTI,
+      permission: ROLE_VISIBILITY.CLIENTI,
       subMenu: [
+        {
+          title: 'MENU.SIDENAV.ELENCO_CLIENTI',
+          icon: 'assignment_ind',
+          link: RoutesEnum.CLIENTI + "/" + RoutesEnum.ELENCO_CLIENTI,
+          content: RoutesEnum.ELENCO_CLIENTI,
+          permission: ROLE_VISIBILITY.CLIENTI
+        },
+
+        /*
         {
           title: 'MENU.SIDENAV.USER_MANAGEMENT',
           icon: 'group',
@@ -28,35 +33,30 @@ export const MENU_ITEMS = [
           permission: ROLE_VISIBILITY.UNITS
         },
         {
-          title: 'MENU.SIDENAV.RESOURCE_MANAGEMENT',
-          icon: 'assignment_ind',
-          link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.RESOURCES,
-          content: RoutesEnum.RESOURCES,
-          permission: ROLE_VISIBILITY.RESOURCES
-        },
-        {
           title: 'MENU.SIDENAV.PROJECT_MANAGEMENT',
           icon: 'work',
           link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.PROJECTS,
           content: RoutesEnum.PROJECTS,
           permission: ROLE_VISIBILITY.PROJECTS
         },
+        */
       ]
     },
     {
-      title: 'MENU.SIDENAV.OPERATIONS_TRIGRAMS',
+      title: 'MENU.SIDENAV.LICENZE',
       icon: 'person_pin',
-      content: RoutesEnum.OPERATIONS_TRIGRAMS,
-      permission: ROLE_VISIBILITY.OFFICIAL_TRIGRAMS,
+      content: RoutesEnum.ELENCO_LICENZE,
+      permission: ROLE_VISIBILITY.LICENZE,
       subMenu: [ {
-        title: 'MENU.SIDENAV.OFFICIAL_TRIGRAMS',
+        title: 'MENU.SIDENAV.ELENCO_LICENZE',
         icon: 'contacts',
-        link: RoutesEnum.OFFICIAL_TRIGRAMS + "/" + RoutesEnum.OPERATIONS_TRIGRAMS,
-        content: RoutesEnum.OPERATIONS_TRIGRAMS,
-        permission: ROLE_VISIBILITY.OFFICIAL_TRIGRAMS
+        link: RoutesEnum.LICENZE + "/" + RoutesEnum.ELENCO_LICENZE,
+        content: RoutesEnum.ELENCO_LICENZE,
+        permission: ROLE_VISIBILITY.LICENZE
       }
     ]
-    },
+    }
+    /*
     {
       title: 'MENU.SIDENAV.TIMESHEET',
       icon: 'add_alarm',
@@ -134,5 +134,6 @@ export const MENU_ITEMS = [
         permission: ROLE_VISIBILITY.IMPORT_RESOURCES
       }
     ]
-    },
+    }
+    */
   ];

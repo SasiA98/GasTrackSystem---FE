@@ -1,8 +1,8 @@
 export enum RoutesEnum {
-  MANAGEMENT = 'management',
+  CLIENTI = 'management',
   USERS = 'users',
   UNITS = 'units',
-  RESOURCES = 'resources',
+  ELENCO_CLIENTI = 'resources',
   PROJECTS = 'projects',
   DATA_MANAGEMENT = "data-management",
   RESOURCE_TIMESHEET = 'resource-timesheet',
@@ -21,6 +21,6 @@ export enum RoutesEnum {
   IMPORT_OVERVIEW = "import-overview",
   IMPORT = "import",
   IMPORT_RESOURCES = "import-resources",
-  OFFICIAL_TRIGRAMS = "official-trigrams",
-  OPERATIONS_TRIGRAMS = "operations-trigrams"
+  LICENZE = "licenze",
+  ELENCO_LICENZE = "elenco-licenze"
 }

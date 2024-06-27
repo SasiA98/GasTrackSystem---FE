@@ -7,7 +7,8 @@
             "MANAGEMENT": "Management",
             "USER_MANAGEMENT": "Users",
             "UNIT_MANAGEMENT": "Units ",
-            "RESOURCE_MANAGEMENT": "Resources",
+            "CLIENTI": "Clienti",
+            "ELENCO_CLIENTI": "Elenco Clienti",
             "PROJECT_MANAGEMENT": "Project Management",
             "RESOURCE_TIMESHEET": "Resource Timesheet",
             "UNIT_TIMESHEET": "Unit Timesheet",
@@ -25,8 +26,8 @@
             "IMPORT": "Timesheets",
             "IMPORT_RESOURCES": "Resources",
             "PROJECTS_GANT_OVERVIEW": "Projects Load Overview",
-            "OPERATIONS_TRIGRAMS": "Operations Trigrams",
-            "OFFICIAL_TRIGRAMS": "Official Trigrams"
+            "ELENCO_LICENZE": "Elenco licenze",
+            "LICENZE": "Licenze"
         }
     },
     "AUTH": {

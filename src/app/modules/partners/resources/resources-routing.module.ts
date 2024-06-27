@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: ResourceSearchComponent,
     data: {
-      permission: ROLE_VISIBILITY.RESOURCES
+      permission: ROLE_VISIBILITY.CLIENTI
     },
   },
    {
@@ -19,7 +19,7 @@ const routes: Routes = [
       canActivate: [PermissionGuard],
       data: {
         title: 'RESOURCES.FORM.TITLE',
-        content: RoutesEnum.RESOURCES,
+        content: RoutesEnum.ELENCO_CLIENTI,
         permission: ROLE_VISIBILITY.NEW_RESOURCE,
         breadcrumb: [RoutesEnum.NEW]
 
@@ -32,8 +32,8 @@ const routes: Routes = [
       canActivate: [PermissionGuard],
       data: {
         title: 'RESOURCES.FORM.TITLE',
-        content: RoutesEnum.RESOURCES,
-        permission: ROLE_VISIBILITY.RESOURCES,
+        content: RoutesEnum.ELENCO_CLIENTI,
+        permission: ROLE_VISIBILITY.CLIENTI,
         breadcrumb: [RoutesEnum.DETAIL]
       },
       component: ResourceFormComponent
