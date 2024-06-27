@@ -1,0 +1,243 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title *ngIf="!isInsert()">{{ pageTitle | translate }} : {{ resourceFullName }} </mat-card-title>
+    <mat-card-title *ngIf="isInsert()">{{ pageTitle | translate }}</mat-card-title>
+    <mat-card-subtitle>{{
+      (isInsert()
+      ? 'RESOURCES.FORM.NEW_SUBTITLE'
+      : permissions
+      ? 'RESOURCES.FORM.UPDATE_SUBTITLE'
+      : 'Resource detail'
+      ) | translate
+      }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content fxLayout="column">
+    <form fxFlex [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row" fxLayoutGap="5px">
+        <mat-label class="group-label">{{ 'ANAGRAPHICS' | translate }}</mat-label>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.NAME' | translate }}</mat-label>
+          <input matInput formControlName="name" [readonly]="!isInsert() || !permissions" required />
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.SURNAME' | translate }}</mat-label>
+          <input matInput formControlName="surname" [readonly]="!isInsert() || !permissions" required />
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.BIRTHDATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate"
+            [readonly]="!isInsert() || !permissions" required />
+          <mat-datepicker-toggle matSuffix [for]="birthDatePicker" [disabled]="!isInsert() || !permissions">
+          </mat-datepicker-toggle>
+          <mat-datepicker #birthDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.TRIGRAM' | translate }}</mat-label>
+          <input matInput formControlName="trigram" maxlength="3" [readonly]="!permissions" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'E-mail (@teoresigroup.com)' | translate }}</mat-label>
+          <input matInput formControlName="email" [readonly]="!permissionEmails" required />
+        </mat-form-field>
+      </div>
+
+      <div class="row" fxLayoutGap="5px" *ngIf="permHiringDet == true">
+        <mat-label class="group-label">{{ 'HIRING DETAILS' | translate }}</mat-label>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{'RESOURCES.FIELDS.WORKING_TIME' | translate}}</mat-label>
+          <input matInput type="number" formControlName="lastWorkingTime" required min="0">
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.WORKING_TIME_SD' | translate }}</mat-label>
+          <input matInput [matDatepicker]="workingTimeDatePicker" formControlName="lastWorkingTimeStartDate"
+            [readonly]="!permissions" />
+          <mat-datepicker-toggle matSuffix [for]="workingTimeDatePicker"
+            [disabled]="!permissions"></mat-datepicker-toggle>
+          <mat-datepicker #workingTimeDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.HIRINGDATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="hiringDatePicker" formControlName="hiringDate"
+            [readonly]="!isInsert() || !permissions" required />
+          <mat-datepicker-toggle matSuffix [for]="hiringDatePicker"
+            [disabled]="!isInsert() || !permissions"></mat-datepicker-toggle>
+          <mat-datepicker #hiringDatePicker></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field fxFlex [hidden]="!permissionsHourlyCosts">
+          <mat-label>{{'RESOURCES.FIELDS.HOURLYCOST' | translate}}</mat-label>
+          <input matInput type="text" formControlName="lastHourlyCost" [readonly]="!permissions" min="0">
+        </mat-form-field>
+
+        <mat-form-field fxFlex [hidden]="!permissionsHourlyCosts">
+          <mat-label>{{ 'RESOURCES.FIELDS.HOURLYCOSTSTARTINGDATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="hourlyCostDatePicker" formControlName="lastHourlyCostStartDate"
+            [readonly]="!permissions" />
+          <mat-datepicker-toggle matSuffix [for]="hourlyCostDatePicker"
+            [disabled]="!permissions"></mat-datepicker-toggle>
+          <mat-datepicker #hourlyCostDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <!-- <div class="row" fxLayoutGap="5px">
+        <mat-form-field fxFlex [hidden]="!permissionRAL">
+          <mat-label>{{ 'RESOURCES.FIELDS.RAL' | translate }}</mat-label>
+          <input matInput type="number" formControlName="ral" [readonly]="!permissionRAL" min="0" required />
+        </mat-form-field>
+
+        <mat-form-field fxFlex [hidden]="!permissionRAL">
+          <mat-label>{{ 'RESOURCES.FIELDS.RALSTARTDATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="ralStartDatePicker" formControlName="ralStartDate"
+            [readonly]="!permissionRAL" required />
+          <mat-datepicker-toggle matSuffix [for]="ralStartDatePicker" [disabled]="!permissions"></mat-datepicker-toggle>
+          <mat-datepicker #ralStartDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex [hidden]="!permissionRAL">
+          <mat-label>{{ 'RESOURCES.FIELDS.DAILY_ALLOWANCE' | translate }}</mat-label>
+          <input matInput type="number" formControlName="dailyAllowance" [readonly]="!permissionRAL" min="0" />
+        </mat-form-field>
+      </div>
+      <div class="row" fxLayoutGap="5px">
+        <mat-form-field fxFlex [hidden]="!permissionRAL">
+          <mat-label>{{
+            'RESOURCES.FIELDS.DAILY_ALLOWANCE_START_DATE' | translate
+            }}</mat-label>
+          <input matInput [matDatepicker]="DailyAllowanceStartDatePicker" formControlName="dailyAllowanceStartDate"
+            [readonly]="!permissionRAL" />
+          <mat-datepicker-toggle matSuffix [for]="DailyAllowanceStartDatePicker"
+            [disabled]="!permissions"></mat-datepicker-toggle>
+          <mat-datepicker #DailyAllowanceStartDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex [hidden]="!permissionRAL">
+          <mat-label>{{ 'RESOURCES.FIELDS.CCNL_LEVEL' | translate }}</mat-label>
+          <input matInput type="text" [formControl]="ccnlControl" [readonly]="!permissionRAL" required
+            [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let ccnl of filteredCcnlLevels | async" [value]="ccnl">
+              {{ ccnl }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field fxFlex [hidden]="!permissionRAL">
+          <mat-label>{{ 'RESOURCES.FIELDS.CCNL_LEVEL_START_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="ccnlLevelStartDatePicker" formControlName="ccnlLevelStartDate"
+            [readonly]="!permissionRAL" required />
+          <mat-datepicker-toggle matSuffix [for]="ccnlLevelStartDatePicker"
+            [disabled]="!permissions"></mat-datepicker-toggle>
+          <mat-datepicker #ccnlLevelStartDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div> -->
+      <div class="row" fxLayoutGap="5px">
+        <mat-label class="group-label">{{ 'ORGANIZATION DETAILS' | translate }}</mat-label>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.EMPLOYEE_ID' | translate }}</mat-label>
+          <input matInput formControlName="employeeId" maxlength="4" [readonly]="!isInsert() || !permissions" required />
+        </mat-form-field>
+
+        <mat-form-field fxFlex formGroupName="unit" check-visibility control="unit.id">
+          <mat-label>{{ 'RESOURCES.FIELDS.UNIT' | translate }}</mat-label>
+          <mat-select formControlName="id" required>
+            <mat-option *ngIf="!units.length && model?.unit?.id" [value]="model?.unit?.id" [disabled]="!permissions">
+              {{ model?.unit?.trigram }}
+            </mat-option>
+            <mat-option *ngFor="let unit of units" [value]="unit.id" [disabled]="!permissions">
+              {{ unit.trigram }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field fxFlex (click)="onRoleFieldClicked()">
+          <mat-label>{{ 'Roles' | translate }}</mat-label>
+          <mat-select formControlName="roles" multiple required>
+            <ng-template ngFor let-role [ngForOf]="Role | keyvalue">
+              <mat-option *ngIf="role.value !== 'ADMIN'" [value]="role.value"
+                [disabled]="!permissions || isRoleDisabled(role.value)">
+                {{ replaceUnderscores(role.value) }}
+              </mat-option>
+            </ng-template>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row" fxLayoutGap="5px">
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.SITE' | translate }}</mat-label>
+          <input matInput formControlName="site" [readonly]="!permissions" />
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.LOCATION' | translate }}</mat-label>
+          <input matInput formControlName="location" [readonly]="!permissions" />
+        </mat-form-field>
+        <mat-form-field fxFlex [hidden]="isInsert()">
+          <mat-label>{{ 'RESOURCES.FIELDS.STATUS' | translate }}</mat-label>
+          <input matInput formControlName="status" [readonly]="true" />
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.LEAVE_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="leaveDatePicker" formControlName="leaveDate" [readonly]="!permissions" />
+          <mat-datepicker-toggle matSuffix [for]="leaveDatePicker" [disabled]="!permissions"></mat-datepicker-toggle>
+          <mat-datepicker #leaveDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.NOTE' | translate }}</mat-label>
+          <textarea matInput formControlName="note" [readonly]="!permissions"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-5">
+        <button type="reset" mat-button color="primary" (click)="goBack()">
+          {{ 'BUTTONS.BACK' | translate }}
+        </button>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10">
+          <button mat-flat-button type="button" color="primary" (click)="skillsHistoryDialog()"
+            [hidden]="isInsert() || !permissionsSkills"> {{"RESOURCES.FIELDS.SKILLS_HISTORY" | translate}} </button>
+          <!-- <button mat-flat-button type="button" color="primary" (click)="salaryDetailsDialog()"
+            [hidden]="isInsert() || !permissionRAL">
+            {{ 'RESOURCES.FIELDS.SALARY_DETAILS' | translate }}
+          </button> -->
+          <button mat-flat-button type="button" color="primary" (click)="hourlyCostHistoryDialog()"
+            [hidden]="isInsert() || !permissionsHourlyCosts">
+            {{ 'RESOURCES.FIELDS.HOURLY_COST_HISTORY' | translate }}
+          </button>
+          <button type="submit" [disabled]="!form.valid" [hidden]="!permissions" mat-flat-button color="primary">{{"BUTTONS.SAVE" |
+            translate}}</button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!isInsert() && allocations && allocations.length > 0">
+  <mat-card-header>
+    <mat-card-title>{{ 'RESOURCES.FORM.RELATED_PROJECTS' | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ 'PROJECTS.SEARCH.TITLE' | translate }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-tab-group>
+    <mat-tab label="Sales Commitment">
+      <mat-card-content fxLayout="column">
+        <app-generic-table [columns]="columnsSale" [dataSource]="projects_sale" [showCheckbox]="false"
+          (onActionClick)="onDetailClick($event.model.projectId)">
+        </app-generic-table>
+      </mat-card-content>
+    </mat-tab>
+
+    <mat-tab label="Real Commitment">
+      <mat-card-content fxLayout="column">
+        <app-generic-table [columns]="columnsReal" [dataSource]="projects_real" [showCheckbox]="false"
+          (onActionClick)="onDetailClick($event.model.projectId)">
+        </app-generic-table>
+      </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

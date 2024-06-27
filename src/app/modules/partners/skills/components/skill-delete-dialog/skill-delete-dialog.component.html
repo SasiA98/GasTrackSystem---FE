@@ -1,0 +1,14 @@
+<mat-card-header>
+    <mat-card-title>Delete Skill</mat-card-title>
+</mat-card-header>
+<br>
+<br>
+<form>
+    <div class="filter-card">
+        <p style="font: 14px/20px Roboto, Helvetica Neue, sans-serif;">Are you sure to delete this Skill?</p>
+        <div mat-dialog-actions fxLayoutAlign="space-between center" class="mt-5">
+            <button mat-raised-button color="primary" type="button" (click)="closeDialog()">No</button>
+            <button mat-raised-button color="primary" type="button" (click)="onSubmit()">Yes</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+node_modules
+package.json
+package-lock.json
+dist
+.angular.json
+.vscode/*
+.angular/*
+.eslintrc
+.prettierrc
+karma*
+.husky

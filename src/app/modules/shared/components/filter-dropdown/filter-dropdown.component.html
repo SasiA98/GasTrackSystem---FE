@@ -1,0 +1,11 @@
+<div class="dropdown">
+  <button mat-flat-button color="primary" class="dropdown-toggle" (click)="toggleDropdown()">
+    <mat-icon>filter_list</mat-icon>
+    <span *ngIf="filtersCount > 0">({{ filtersCount }})</span>
+  </button>
+  <div class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+  

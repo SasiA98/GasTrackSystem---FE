@@ -1,0 +1,52 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{pageTitle | translate}}</mat-card-title>
+        <mat-card-subtitle>{{'SKILLS.SEARCH.SUBTITLE' | translate}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content fxLayout="column">
+
+      <ng-container  [ngTemplateOutlet]="searchForm">
+        
+      </ng-container>
+
+      <app-generic-table
+          searchResult
+          *ngIf="searchResult"
+          (onPageChange)="onPageChange($event)"
+          [totalElements]="searchResult?.totalElements"
+          [numberOfElements]="searchResult?.size"
+          [totalPages]="searchResult?.totalPages"
+          [columns]="columns"
+          [dataSource]="searchResult?.content"
+          [showCheckbox]="false"
+          [tableAction]="actions" (onActionClick)="onActionClick($event.model, $event.operation)"
+          (onSortChange)="onSortChange($event)"
+      >
+      </app-generic-table>
+  </mat-card-content>
+</mat-card>
+
+
+<ng-template #searchForm>
+    <form fxFlexLayout="row" fxLayoutAlign="space-between center" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div fxLayout="row" fxLayoutAlign="start"  class="pb-2 mb-1">
+
+          <mat-form-field>
+              <mat-label>{{"SKILLS.SEARCH.SEARCH_BAR" | translate}}</mat-label>
+              <input matInput placeholder="Search" formControlName="fullName">
+              <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10" class="pb-2 mb-1">
+        <button type="custom_reset" mat-flat-button color="primary" (click)="resetSearch()">{{"BUTTONS.RESET" | translate}}</button>
+        <button *ngIf="roleService.hasPermission(ROLE_VISIBILITY.NEW_SKILLS)" mat-flat-button color="primary" (click)="openSkillDialog()">{{"BUTTONS.NEW_SKILL" | translate}}</button>
+        <button *ngIf="roleService.hasPermission(ROLE_VISIBILITY.NEW_SKILLS)" mat-flat-button color="primary" (click)="openSkillGroupDialog()">{{"BUTTONS.NEW_SKILL_GROUP" | translate}}</button>
+        <button *ngIf="roleService.hasPermission(ROLE_VISIBILITY.NEW_SKILLS)" mat-flat-button color="primary" (click)="deleteSkillGroupDialog()">{{"DELETE SKILL GROUP" | translate}}</button>
+
+      </div>
+    </form>
+    
+</ng-template>
+

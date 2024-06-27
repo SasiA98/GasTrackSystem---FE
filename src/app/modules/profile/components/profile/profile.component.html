@@ -1,0 +1,126 @@
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20">
+    <div fxFlex="20%">
+        <mat-card fxLayout="column" class="py-5">
+            <mat-card-content>
+                <div fxFlex>
+                    <div fxLayout="row" fxLayoutAlign="center center" class="mb-2">
+                        <img height="100" src="assets/imgs/men_avatar.png">
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center">
+                      <p class="pt-3 text-center subheading-2 mb-0 text-muted">{{ model?.resource?.unit?.trigram| titlecase }}</p>
+                      <p class="text-center subheading-2 mb-0">{{ model?.resource?.name| titlecase }} {{ model?.resource?.surname | titlecase }}</p>
+                      <p class="badge badge-primary text-center mx-auto" style="background-color: #333;">{{ model?.resource?.roles?.join(' - ') }}</p>
+                  </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-card fxFlex="auto" fxLayout="column" fxLayoutGap="30">
+        <mat-card-title>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <h2 class="mb-0">{{'PROFILE.TITLE' | translate}}</h2>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button *ngIf="!editEnabled" mat-button color="primary" (click)="enableEditing()">{{'PROFILE.BUTTONS.EDIT' | translate}}</button>
+                </div>
+            </div>
+        </mat-card-title>
+        <ng-container [ngTemplateOutlet]="editEnabled ? editForm : details"></ng-container>
+    </mat-card>
+</div>
+
+<ng-template #editForm>
+
+    <mat-card-content>
+      <div fxLayout="column">
+      <mat-card-header>
+        <mat-card-title>Update Password</mat-card-title>
+      </mat-card-header>
+      <form fxFlex [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div fxLayout="column">
+          <mat-form-field fxFlex style="margin-left: 20px;">
+            <mat-label>{{"PROFILE.FIELDS.CURRENT_PASSWORD" | translate}}</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+          
+          <mat-form-field fxFlex style="margin-left: 20px;">
+            <mat-label>{{"PROFILE.FIELDS.NEW_PASSWORD" | translate}}</mat-label>
+            <input matInput type="password" formControlName="newPassword">
+          </mat-form-field>
+          <div *ngIf="form.get('newPassword')?.invalid && (form.get('newPassword')?.dirty || form.get('newPassword')?.touched)">
+            <div class="passwordErrorText" *ngIf="form.get('newPassword')?.errors?.['required']">The password is a mandatory input!</div>
+            <div class="passwordErrorText" *ngIf="form.get('newPassword')?.errors?.['strongPassword']">
+              <p class="passwordErrorText"  *ngIf="!form.get('newPassword')?.errors?.['strongPassword'].hasMinLength">The password must have at least 8 characters.</p>
+              <p class="passwordErrorText" *ngIf="!form.get('newPassword')?.errors?.['strongPassword'].hasUpperCase">The password must contain at least one capital letter.</p>
+              <p class="passwordErrorText" *ngIf="!form.get('newPassword')?.errors?.['strongPassword'].hasNumeric">The password must contain at least one number.</p>
+              <p class="passwordErrorText" *ngIf="!form.get('newPassword')?.errors?.['strongPassword'].hasSpecialChar">The password must contain at least one special character.</p>
+            </div>
+          </div>
+          <mat-form-field fxFlex style="margin-left: 20px;">
+            <mat-label>{{"PROFILE.FIELDS.CONFIRM_PASSWORD" | translate}}</mat-label>
+            <input matInput type="password" formControlName="confirmPassword">
+          </mat-form-field>
+          <div *ngIf="form.get('confirmPassword')?.value !== form.get('newPassword')?.value">
+            <p class="passwordErrorText">Passwords must match.</p>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-5">
+          <button type="reset" mat-button color="primary" (click)="resetForm()">{{"BUTTONS.CANCEL" | translate}}</button>
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10">
+            <button [disabled]="form.invalid"  type="submit" mat-flat-button color="primary">{{"BUTTONS.SAVE" | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </mat-card-content>
+</ng-template>
+
+<ng-template #details>
+
+    <mat-card-content>
+      <div class="mb-3" fxLayout="column" fxLayoutGap="10">
+        <div fxLayout="row" fxLayout="start center" fxlayoutGap="10">
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.name">
+            <h3 class="mb-0">Name</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.name}}</span>
+          </div>
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.surname">
+            <h3 class="mb-0">Surname</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.surname}}</span>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout="start center" fxlayoutGap="10">
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.employee_id">
+            <h3 class="mb-0">Employee ID</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.employee_id}}</span>
+          </div>
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.email">
+            <h3 class="mb-0">E-mail</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.email}}</span>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout="start center" fxlayoutGap="10">
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.unit?.trigram">
+            <h3 class="mb-0">Unit</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.unit?.trigram}}</span>
+          </div>
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.roles">
+            <h3 class="mb-0">Roles</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.roles?.join(' - ')}}</span>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout="start center" fxlayoutGap="10">
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.location">
+            <h3 class="mb-0">Location</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.location}}</span>
+          </div>
+          <div fxFlex fxLayout="column" *ngIf="model?.resource?.site">
+            <h3 class="mb-0">Site</h3>
+            <span class="text-muted fw-lighter">{{model?.resource?.site}}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+
+</ng-template>

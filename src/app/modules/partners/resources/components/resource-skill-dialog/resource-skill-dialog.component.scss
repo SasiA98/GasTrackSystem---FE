@@ -1,0 +1,20 @@
+.fixed-width-table {
+  width: 100%;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-height: 400px;
+  margin-bottom: 16px;
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.rated{
+  color: #ffca08;
+}
+.inline {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,139 @@
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title>{{'RESOURCE_LOAD_OVERVIEW.FORM.TITLE' | translate}}</mat-card-title>
+    <mat-card-subtitle>{{'RESOURCE_LOAD_OVERVIEW.FORM.SUBTITLE' | translate}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="row sticky" style="overflow-x: auto;">
+    <form [formGroup]="form" style="margin-top: 0.5rem;">
+      <mat-form-field assistance="fill" formGroupName="unit" check-visibility control="unit.id">
+        <mat-label>{{"RESOURCES.FIELDS.UNIT" | translate}}</mat-label>
+        <mat-select formControlName="id" required (selectionChange)="onUnitChange($event.value)">
+          <mat-option [value]="0" [disabled]="!permissions">All</mat-option>
+          <mat-option *ngFor="let unit of units" [value]="unit.id" [disabled]="!permissions">
+            {{unit.trigram}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="padding-left: 15px;" assistance="fill">
+        <mat-label>{{'Pre-Allocation' | translate}}</mat-label>
+        <mat-select formControlName="status" required (selectionChange)="onSelectionChange($event)">
+          <mat-option *ngFor="let status of AllocationStatus | keyvalue" [value]="status.value">
+            {{status.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="badge rounded-pill badge-success badge-sm bg-success"> ≥ 100%</span>
+      <span class="badge rounded-pill badge-warning badge-sm bg-warning">70 - 100%</span>
+      <span class="badge rounded-pill badge-orange badge-sm bg-orange">30 - 70%</span>
+      <span class="badge rounded-pill badge-danger badge-sm bg-danger">0 - 30%</span>
+    </form>
+  </mat-card-content>
+
+  <hr class="w-100">
+
+  <div class="table-scroll">
+    <div class="spinner-container" *ngIf="isLoading">
+      <div class="spinner">
+        <mat-spinner diameter="80"></mat-spinner>
+      </div>
+    </div>
+
+    <ng-container *ngIf="!isLoading">
+      <div class="table-resource-container mat-elevation-z8" id="tableRes"  #tableResourses>
+        <table mat-table [dataSource]="resourcesLoad" class="mat-elevation-z8">
+          <ng-container matColumnDef="unitTrigram" [sticky]="true">
+            <th mat-header-cell *matHeaderCellDef>Unit</th>
+            <td mat-cell *matCellDef="let resourceLoad; let i = index;" [attr.rowspan]="2"
+                [style.display]="(i % 2 === 0) ? '' : 'none'">
+                {{ resourceLoad.unitTrigram }}
+            </td>
+        </ng-container>
+        
+
+          <ng-container matColumnDef="name" [sticky]="true">
+            <th mat-header-cell *matHeaderCellDef>Resource</th>
+            <td mat-cell *matCellDef="let resourceLoad; let i = index;" [attr.rowspan]="2"
+              [style.display]="(i%2 === 0)? '' : 'none'">
+              {{resourceLoad.fullName}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cw" [sticky]="true">
+            <th mat-header-cell *matHeaderCellDef>CW</th>
+            <td mat-cell *matCellDef="let resourceLoad; let i = index;"> 
+              {{resourceLoad.cw}}
+            </td>
+          </ng-container>
+                
+
+          <ng-container *ngFor="let month of months" matColumnDef="{{month.name}}">
+            <th class="text-center" mat-header-cell *matHeaderCellDef>
+              <div class="d-flex justify-content-around p-1">
+                <p *ngFor="let week of month.weeks" style="width: 45px;">
+                  {{week}}
+                </p>
+              </div>
+            </th>
+            <td mat-cell *matCellDef="let resourceLoad; let isOdd = odd">
+              <ng-container *ngIf="!isOdd">
+                <div class="d-flex justify-content-start p-1" style="color:white;" [ngClass]="{
+                    'small-month' : getObjectKeys(resourceLoad.weeklySaleCommitmentPct, month.index).length <= 4,
+                    'float-left' : getObjectKeys(resourceLoad.weeklySaleCommitmentPct, month.index).length === 1 || getObjectKeys(resourceLoad.weeklySaleCommitmentPct, month.index).length === 2 || getObjectKeys(resourceLoad.weeklySaleCommitmentPct, month.index).length === 3
+                  }">
+                  <div *ngFor="let week of getObjectKeys(resourceLoad.weeklySaleCommitmentPct, month.index)" align="center"
+                    class="sales-commitment" style="background-color: rgb(229, 223, 223);"
+                    [ngClass]="getPercentageColorClass(resourceLoad.weeklySaleCommitmentPct[month.index][week])">
+                    {{ resourceLoad.weeklySaleCommitmentPct[month.index][week] }}%
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="isOdd">
+                <div class="d-flex justify-content-start p-1" style="color:white;"
+                  [ngClass]="{
+                  'small-month' : getObjectKeys(resourceLoad.weeklyRealCommitmentPct, month.index).length <= 4,
+                  'float-left' : getObjectKeys(resourceLoad.weeklyRealCommitmentPct, month.index).length === 1 || getObjectKeys(resourceLoad.weeklyRealCommitmentPct, month.index).length === 2 || getObjectKeys(resourceLoad.weeklyRealCommitmentPct, month.index).length === 3}">
+                  <div *ngFor="let week of getObjectKeys(resourceLoad.weeklyRealCommitmentPct, month.index)" align="center"
+                    class="real-commitment"
+                    [ngClass]="getPercentageColorClass(resourceLoad.weeklyRealCommitmentPct[month.index][week])">
+                    {{ resourceLoad.weeklyRealCommitmentPct[month.index][week] }}%
+                  </div>
+                </div>
+              </ng-container>
+            </td>
+          </ng-container>
+
+
+          <!-- START Header first row -->
+          <ng-container matColumnDef="header-empty-group-first" [sticky]="true">
+            <th mat-header-cell *matHeaderCellDef [style.text-align]="'center'" [attr.colspan]="3">
+            </th>
+          </ng-container>
+
+          <ng-container *ngFor="let month of months" matColumnDef="{{month.name}}-header">
+            <th class="text-center" mat-header-cell *matHeaderCellDef
+              [ngClass]="{ 'current-month': month.isCurrentMonth, 'other-month': !month.isCurrentMonth }">
+              {{ month.name }} {{ currentYear }}</th>
+          </ng-container>
+          <!-- END Header first row -->
+
+          <tr mat-header-row *matHeaderRowDef="firstHeaderRow; sticky: true;"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns; let odd = odd; let even = even; let i = index;"
+            [ngClass]="{'odd-row': !isOddRowReverse(i)}"></tr>
+
+        </table>
+      </div>
+    </ng-container>
+
+    <mat-paginator [pageSize]="pageable.size" [length]="totalElements" (page)="onPageChange($event)"
+      showFirstLastButtons></mat-paginator>
+
+  </div>
+</mat-card>
+
+<ng-template #spinnerContent>
+  <div class="spinner-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</ng-template>

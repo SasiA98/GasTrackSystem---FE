@@ -1,0 +1,90 @@
+@import '~ngx-toastr/toastr';
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+:root {
+  --primary-color: #1d689d;
+  --background-color: #f5f7f7;
+  --box-color: #1d1e23;
+  --foreground-box-color: #fff;
+  --foreground-primary-color: #fff;
+  --accent: #c02;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.pageTitle {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0.25px;
+}
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.7em 0 0.7em 0 !important;
+  top: -0.25em;
+}
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: translateY(0) !important;
+}
+
+.mat-card {
+  border-bottom: 3px solid var(--primary-color);
+
+  .mat-card-title {
+    font-size: 16px !important;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .mat-card-header {
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.mat-button-wrapper {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.mat-button {
+  color:#ea6a11 !important
+}
+
+.mat-flat-button {
+  background-color: #ea6a11 !important;
+ }
+.mat-raised-button {
+  background-color: #1d689d !important;
+}
+
+.bottom-sheet-full-width {
+  width: 100vw;
+  min-height: 60vh;
+}
+
+.configure-button {
+  position: absolute !important;
+  right: 15px;
+}
+
+mat-radio-group.ng-invalid.ng-touched span.mat-radio-outer-circle {
+  border: 2px solid #f44336;
+}
+
+mat-radio-group.ng-invalid.ng-touched span.mat-radio-label-content {
+  color: #f44336 !important;
+}

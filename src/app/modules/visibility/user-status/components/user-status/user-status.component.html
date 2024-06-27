@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ pageTitle | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ 'SBOM.SEARCH.SUBTITLE' | translate }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content fxLayout="column">
+    <ng-container [ngTemplateOutlet]="searchForm"></ng-container>
+
+    <app-generic-table
+      searchResult
+      *ngIf="searchResult"
+      [tableAction]="tableAction"
+      (onPageChange)="onPageChange($event)"
+      [totalElements]="searchResult?.totalElements"
+      [numberOfElements]="searchResult?.size"
+      [totalPages]="searchResult?.totalPages"
+      [columns]="columns"
+      [dataSource]="searchResult?.content"
+      [showCheckbox]="false"
+      (onSortChange)="onSortChange($event)"
+      (onActionClick)="onShowClick($event)"
+    >
+    </app-generic-table>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #searchForm>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="space-between start"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field fxFlex>
+      <mat-label>{{ 'SEARCH.TITLE' | translate }}</mat-label>
+      <input matInput placeholder="Search" formControlName="searchInput" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10" class="pb-2 mb-1 w-100">
+      <button type="reset" mat-stroked-button (click)="resetSearch()">
+        {{ 'BUTTONS.RESET' | translate }}
+      </button>
+      <button type="submit" mat-flat-button color="primary">
+        {{ 'SEARCH.BUTTONS.SUBMIT' | translate }}
+      </button>
+    </div>
+  </form>
+</ng-template>

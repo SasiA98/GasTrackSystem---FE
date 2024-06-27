@@ -1,0 +1,11 @@
+.passwordErrorText {
+  color: #f44336; // Colore rosso di mat-error
+  font-size: 12px; // Testo più piccolo
+  margin-left: 10px; // Testo più verso destra
+  margin-top: 2px; // Riduce il margine superiore
+  margin-bottom: 2px; // Riduce il margine inferiore
+}
+
+.passwordErrorDiv {
+  margin-top: -20px; // Riduce il margine superiore
+}

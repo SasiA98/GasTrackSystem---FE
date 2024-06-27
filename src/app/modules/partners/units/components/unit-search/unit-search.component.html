@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{pageTitle | translate}}</mat-card-title>
+    <mat-card-subtitle>{{'UNITS.SEARCH.SUBTITLE' | translate}}</mat-card-subtitle>
+  </mat-card-header>
+
+
+  <mat-card-content>
+    <ng-container [ngTemplateOutlet]="searchForm"></ng-container>
+
+    <app-generic-table searchResult *ngIf="searchResult" (onPageChange)="onPageChange($event)"
+      [totalElements]="searchResult?.totalElements" [numberOfElements]="searchResult?.size"
+      [totalPages]="searchResult?.totalPages" [columns]="columns" [dataSource]="searchResult?.content"
+      [showCheckbox]="false" (onActionClick)="onEditClick($event.model)" (onSortChange)="onSortChange($event)">
+    </app-generic-table>
+
+  </mat-card-content>
+</mat-card>
+
+
+
+<ng-template #searchForm>
+  <form fxFlexLayout="row" fxLayoutAlign="space-between center" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10" class="pb-2 mb-1">
+
+      <mat-form-field>
+        <mat-label>{{"Search for Unit Trigram" | translate}}</mat-label>
+        <input matInput placeholder="Search" formControlName="searchInput">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'RESOURCES.FIELDS.UNIT_TYPE' | translate }}</mat-label>
+          <mat-select formControlName="unit">
+            <mat-option *ngFor="let unit of ExtendedUnitType | keyvalue" [value]="unit.value">
+              {{ unit.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex check-visibility control="status">
+          <mat-label>{{"UNITS.FIELDS.STATUS" | translate}}</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of ExtendedStatus | keyvalue" [value]="status.value">
+              {{ status.value | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10" class="pb-2 mb-1">
+      <button type="custom_reset" mat-flat-button color="primary" (click)="resetSearch()">Erase filter</button>
+      <button *ngIf="roleService.hasPermission(ROLE_VISIBILITY.NEW_UNIT)" mat-flat-button color="primary"
+        (click)="onNewClick()">{{"BUTTONS.NEW_UNIT" | translate}}</button>
+    </div>
+
+  </form>
+</ng-template>

@@ -1,0 +1,47 @@
+<form fxFlex fxLayout="column" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label> {{ 'Token' | translate }}</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="token"
+      placeholder="Token"
+    />
+    <mat-error *ngIf="form.get('token')?.hasError('required')">
+      {{ 'AUTH.FORM.ERRORS.REQUIRED' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label> {{ 'AUTH.FORM.PASSWORD' | translate }}</mat-label>
+    <input
+      type="password"
+      matInput
+      formControlName="password"
+      placeholder="Password"
+    />
+  </mat-form-field>
+  <div class="passwordErrorDiv" *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
+    <div class="passwordErrorText" *ngIf="form.get('password')?.errors?.['required']">Password is mandatory.</div>
+    <div class="passwordErrorText" *ngIf="form.get('password')?.errors?.['strongPassword']">
+      <p class="passwordErrorText" *ngIf="!form.get('password')?.errors?.['strongPassword'].hasMinLength">The password must have at least 8 characters.</p>
+      <p class="passwordErrorText" *ngIf="!form.get('password')?.errors?.['strongPassword'].hasUpperCase">The password must contain at least one capital letter.</p>
+      <p class="passwordErrorText" *ngIf="!form.get('password')?.errors?.['strongPassword'].hasNumeric">The password must contain at least one number.</p>
+      <p class="passwordErrorText" *ngIf="!form.get('password')?.errors?.['strongPassword'].hasSpecialChar">The password must contain at least one special character.</p>
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label> {{ 'Confirm password' | translate }}</mat-label>
+    <input
+      type="password"
+      matInput
+      formControlName="confirmPassword"
+      placeholder="Confirm password"
+    />
+  </mat-form-field>
+  <div class="passwordErrorDiv" *ngIf="form.get('confirmPassword')?.invalid && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">
+    <div class="passwordErrorText" *ngIf="form.get('confirmPassword')?.errors?.['required']">Confirm password is required!</div>
+    <div class="passwordErrorText" *ngIf="form.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not match!</div>
+  </div>
+</form>

@@ -1,0 +1,58 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{pageTitle | translate}}  : {{unitName}} </mat-card-title>
+        <mat-card-subtitle>{{ (isInsert() ? 'UNITS.FORM.NEW_SUBTITLE' : 'UNITS.FORM.UPDATE_SUBTITLE') | translate}}</mat-card-subtitle>
+    </mat-card-header>
+
+
+    <mat-card-content fxLayout="column">
+        <form fxFlex [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row" fxLayoutGap="5px">
+                <mat-form-field fxFlex check-visibility control="trigram">
+                    <mat-label>{{'UNITS.FIELDS.TRIGRAM' | translate}}</mat-label>
+                    <input matInput formControlName="trigram" maxlength="3" required [readonly]="!roleService.hasPermission(ROLE_VISIBILITY.NEW_UNIT)">
+                </mat-form-field>
+                <mat-form-field fxFlex check-visibility control="type">
+                  <mat-label>{{"UNITS.FIELDS.TYPE" | translate}}</mat-label>
+                  <mat-select formControlName="type" [disabled]="!roleService.hasPermission(ROLE_VISIBILITY.NEW_UNIT)" required>
+                    <mat-option *ngFor="let unitType of UnitType | keyvalue" [value]="unitType.value">
+                      {{ unitType.value | titlecase }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex check-visibility control="status">
+                  <mat-label>{{"UNITS.FIELDS.STATUS" | translate}}</mat-label>
+                  <mat-select formControlName="status" [disabled]="isInsert() || resources.length > 0 || !roleService.hasPermission(ROLE_VISIBILITY.NEW_UNIT)" [value]="'Enabled'">
+                    <mat-option *ngFor="let status of Status | keyvalue" [value]="status.value">
+                      {{ status.value | titlecase }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-5">
+                <button type="reset" mat-button color="primary" (click)="goBack()">{{"BUTTONS.BACK" | translate}}</button>
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10">
+                    <button [disabled]="!roleService.hasPermission(ROLE_VISIBILITY.NEW_UNIT)" type="submit" mat-flat-button color="primary">{{"BUTTONS.SAVE" | translate}}</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!isInsert()">
+  <mat-card-header>
+    <mat-card-title>{{'RESOURCES.FORM.ASSOCIATED_RESOURCES' | translate}}</mat-card-title>
+    <mat-card-subtitle>{{'RESOURCES.SEARCH.TITLE' | translate}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content fxLayout="column">
+    <app-generic-table
+      [columns]="columns"
+      [dataSource]="resources"
+      [showCheckbox]="false"
+      (onActionClick)="onDetailClick($event.model)">
+    </app-generic-table>
+  </mat-card-content>
+</mat-card>
+
+

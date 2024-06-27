@@ -1,0 +1,85 @@
+<div class="background">
+  <div class="left-side">
+    <div class="left-content">
+      <h1 class="page-title">
+        {{ 'AUTH.PAGE_TITLE' | translate }}
+      </h1>
+      <h2 class="page-sub-title">
+        {{ 'AUTH.SUBTITLE' | translate }}
+      </h2>
+    </div>
+  </div>
+  <div class="right-side">
+    <div fxFlex fxLayoutAlign="center center" class="login-container">
+      <mat-card class="login-card mat-elevation-z10">
+
+        <!-- Login -->
+        <ng-container *ngIf="!forgottenPassword && !resetPassword">
+          <img src="/assets/imgs/logo.png" class="corner-image" />
+          <mat-card-title>{{ 'AUTH.TITLE' | translate }}</mat-card-title>
+          <mat-card-content (keyup.enter)="onLogin()">
+            <app-auth-subform [form]="form"></app-auth-subform>
+            <div class="forgot-password-link" (click)="forgotPassword()">
+              <p class="forgot-password-text">{{ 'Forgot your password?' }}</p>
+            </div>
+          </mat-card-content>
+          <mat-card-actions fxLayoutAlign="end center">
+            <button mat-flat-button color="primary" (click)="onLogin()">
+              {{ 'AUTH.BUTTON' | translate }}
+            </button>
+          </mat-card-actions>
+          <mat-card-footer *ngIf="loading">
+            <mat-progress-bar mode="query"></mat-progress-bar>
+          </mat-card-footer>
+        </ng-container>
+
+        <!-- Send token to email -->
+        <ng-container *ngIf="forgottenPassword && !resetPassword">
+          <img src="/assets/imgs/logo.png" class="corner-image" />
+          <mat-card-title>{{ 'RESET PASSWORD' | translate }}</mat-card-title>
+          <mat-card-content (keyup.enter)="forgotPassword()">
+            <app-auth-subform-reset-pw [form]="form"></app-auth-subform-reset-pw>
+          </mat-card-content>
+          <mat-card-actions fxLayoutAlign="end center">
+            <button mat-flat-button color="primary" (click)="disableForgottenPassword()">
+              {{ 'Back' }}
+            </button>
+            <button mat-flat-button color="primary" (click)="onForgotPassword()">
+              {{ 'Send token to email' }}
+            </button>
+          </mat-card-actions>
+          <mat-card-footer *ngIf="loading">
+            <mat-progress-bar mode="query"></mat-progress-bar>
+          </mat-card-footer>
+        </ng-container>
+
+        <!-- Reset password -->
+        <ng-container *ngIf="!forgottenPassword && resetPassword">
+          <img src="/assets/imgs/logo.png" class="corner-image" />
+          <mat-card-subtitle>
+            {{ 'AUTH.SUBTITLE' | translate }}
+          </mat-card-subtitle>
+          <mat-card-title>{{ 'RESET PASSWORD' | translate }}</mat-card-title>
+          <mat-card-content (keyup.enter)="forgotPassword()">
+            <app-auth-subform-token [form]="form"></app-auth-subform-token>
+          </mat-card-content>
+          <mat-card-actions fxLayoutAlign="end center">
+            <button mat-flat-button color="primary" (click)="disableResetPassword()">
+              {{ 'Back' }}
+            </button>
+            <button mat-flat-button color="primary" (click)="onResetPassword()">
+              {{ 'Reset password' }}
+            </button>
+          </mat-card-actions>
+          <mat-card-footer *ngIf="loading">
+            <mat-progress-bar mode="query"></mat-progress-bar>
+          </mat-card-footer>
+        </ng-container>
+
+      </mat-card>
+    </div>
+  </div>
+  <div class="version-container" *ngIf="version">
+    <mat-label>Version: {{version}}</mat-label>
+  </div>
+</div>

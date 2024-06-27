@@ -1,0 +1,140 @@
+<ng-container *ngTemplateOutlet="dataSource && dataSource.length ? resultTable : emptyList"></ng-container>
+
+<ng-template #emptyList>
+  <p class="text-muted text-center" *ngIf="!dataSource || dataSource.length == 0">
+    {{ 'SEARCH.EMPTY_RESULT' | translate }}
+  </p>
+</ng-template>
+
+<ng-template #resultTable>
+  <div class="table-container">
+    <table mat-table matSort *ngIf="dataSource && dataSource.length" [dataSource]="dataSource"
+      (matSortChange)="sortChange($event)">
+      <!--column Checkbox -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell class="column-select" *matHeaderCellDef>
+          <mat-checkbox *ngIf="showSelectAll" (change)="allSelected()"
+            [checked]="selectedRows.hasValue() && isAllSelected"
+            [indeterminate]="selectedRows.hasValue() && !isAllSelected" color="primary">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="rowSelected(row)"
+            [checked]="selectedRows.isSelected(row)" color="primary">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Altre Colonne -->
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.attributeName">
+        <th mat-header-cell mat-sort-header [disabled]="sortDisabled" *matHeaderCellDef>
+          {{ column.title | translate }}
+          <mat-icon class="icon-pencil"> {{ column.icon }} </mat-icon>
+        </th>
+        <td mat-cell [ngClass]="{ accent: column?.accent }" *matCellDef="let element">
+          <ng-container
+            [ngTemplateOutlet]="column.pipeArgs ? displayPipeContent : (column.editable ? editableColumn : translatedContent)">
+          </ng-container>
+
+          <ng-template #displayPipeContent>
+            <span
+              *ngIf="element[column.attributeName] != null && element[column.attributeName] != ''; else emptyColumn"
+              >
+              {{ element[column.attributeName] | pipeExecutor: column.pipeArgs }}
+            </span>
+            <ng-container *ngIf="element.leaveDate && isLeaveDateValid(element.leaveDate) && column.hasOwnProperty('leaveicon')">
+              <i class="fa-solid fa-person-walking-arrow-right 2xl" style="color:red"></i>
+            </ng-container>
+          </ng-template>
+
+          <ng-template #editableColumn>
+            <div *ngIf="column.number != true; else inputNumber">
+              <div class="input-wrapper">
+                <textarea matInput class="no-border"
+                  [ngModel]="transformValue(element[column.attributeName], column.pipeArgs)"
+                  (ngModelChange)="updateValue($event, column.attributeName, element)"
+                  (blur)="saveData($event, column.title, element)" (focus)="onFocus($event)"
+                  [ngClass]="{'transparent-border': !isFocused}" 
+                  [disabled]="element.verifiedHours || column.isEnabled == false">
+                </textarea>
+              </div>
+            </div>
+            <ng-template #inputNumber>
+              <div class="input-number-wrapper">
+                <div class="input-wrapper">
+                  <input type="number" min="0" matInput class="no-border"
+                    [ngModel]="transformValue(element[column.attributeName], column.pipeArgs)"
+                    (ngModelChange)="updateValue($event, column.attributeName, element)"
+                    (blur)="saveData($event, column.title, element)" (focus)="onFocus($event)"
+                    [ngClass]="{'transparent-border': !isFocused}" 
+                    [disabled]="element.verifiedHours != null || column.isEnabled == false">
+                  
+                  <ng-container *ngIf="element.name !== 'Time Off' && element.name !== 'Holidays'">
+                    <ng-container *ngIf="element.hasOwnProperty('verifiedHours') && element.name !== 'Time Off' && element.name !== 'Holidays' && element.verifiedHours != null;">
+                      <mat-icon #tooltip="matTooltip" [matTooltip]="element.verifiedHours == false ? 'Validated' : 'Updated'  + ': ' + element.preImportHours"
+                        matTooltipPosition="below" class="update-icon"
+                        [ngClass]="element.verifiedHours ? 'update-icon' : 'check-icon'" style="color: green;">
+                        {{ element.verifiedHours == false ? 'check' : 'update' }}
+                      </mat-icon>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+            </ng-template>
+          </ng-template>
+
+          <ng-template #translatedContent>
+            <span *ngIf="element[column.attributeName] != null && element[column.attributeName] != ''; else emptyColumn">
+              {{ (column.attributeName == 'customRole')? element[column.attributeName].replace('_',' ') :
+              element[column.attributeName] | translate }}
+            </span>
+          </ng-template>
+
+          <ng-template #emptyColumn>
+            <p *ngIf="element[column.attributeName] === 0; else emptyStringColumn">0</p>
+          </ng-template>
+          <ng-template #emptyStringColumn>
+            <i style="opacity: 0.4;">empty</i>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- action -->
+      <ng-container *ngIf="tableAction && tableAction.length" matColumnDef="action">
+        <th mat-header-cell class="column-action" *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngTemplateOutlet="tableAction.length > 1 ? buttonMenu : buttonList; context: { element: this.element }"></ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="visibleColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: visibleColumns"
+        [ngClass]="{ 'erp-row': true, selected: selectedRows.isSelected(row) }"></tr>
+    </table>
+  </div>
+</ng-template>
+
+<div fxFlexLyout="row" fxLayoutAlign="end center" class="table-footer"
+  *ngIf="dataSource && dataSource.length && totalPages && totalPages > 1">
+  <mat-paginator [hidePageSize]="hidePageSize" [length]="totalElements" [pageSize]="numberOfElements"
+    [pageSizeOptions]="pageSizeOptions" (page)="pageChange($event)"></mat-paginator>
+</div>
+
+<ng-template #buttonList let-element="element">
+  <button mat-button color="primary" class="action-button" *ngFor="let action of tableAction"
+    (click)="actionClick(element, action.operation)" [disableRipple]="true">
+    {{ action.title | translate }}
+  </button>
+</ng-template>
+
+<ng-template #buttonMenu let-element="element">
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon aria-hidden="false" color="primary">more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item color="accent" *ngFor="let action of tableAction" color="primary"
+      (click)="actionClick(element, action.operation)">
+      {{ action.title | translate }}
+    </button>
+  </mat-menu>
+</ng-template>

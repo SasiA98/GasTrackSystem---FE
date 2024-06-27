@@ -1,0 +1,4 @@
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="center">
+  <p *ngIf="data.headerText" class="dialog-paragraph">{{ data.headerText }}</p>
+  <ng-container [ngTemplateOutlet]="data.template" [ngTemplateOutletContext]="data"></ng-container>
+</div>

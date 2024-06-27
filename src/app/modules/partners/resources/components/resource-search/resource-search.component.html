@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{pageTitle | translate}}</mat-card-title>
+        <mat-card-subtitle>{{'RESOURCES.SEARCH.SUBTITLE' | translate}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content fxLayout="column">
+
+        <ng-container [ngTemplateOutlet]="searchForm" ></ng-container>
+
+        <app-generic-table
+            searchResult
+            *ngIf="searchResult"
+            (onPageChange)="onPageChange($event)"
+            [totalElements]="searchResult?.totalElements"
+            [numberOfElements]="searchResult?.size"
+            [totalPages]="searchResult?.totalPages"
+            [columns]="columns"
+            [dataSource]="searchResult?.content"
+            [showCheckbox]="false"
+            (onActionClick)="onEditClick($event.model)"
+            (onSortChange)="onSortChange($event)"
+        >
+        </app-generic-table>
+    </mat-card-content>
+</mat-card>
+
+
+<ng-template #searchForm>
+    <form fxFlexLayout="row" fxLayoutAlign="space-between center" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div fxLayout="row" fxLayoutAlign="start"  class="pb-2 mb-1">
+
+          <mat-form-field>
+              <mat-label>{{"RESOURCES.SEARCH.SEARCH_BAR_NAME" | translate}}</mat-label>
+              <input matInput placeholder="Search" formControlName="fullName">
+              <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+
+          <app-filter-dropdown class="filters">
+            <app-resource-filter [resourceFilter]="resourceFilter" (resourceFilterChanged)="onResourceFilterChanged($event)"></app-resource-filter>
+          </app-filter-dropdown>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10" class="pb-2 mb-1">
+        <button *ngIf="roleService.hasPermission(ROLE_VISIBILITY.NEW_RESOURCE)" mat-flat-button color="primary" (click)="onNewClick()">{{"BUTTONS.NEW_RESOURCE" | translate}}</button>
+      </div>
+    </form>
+
+</ng-template>
+

@@ -1,0 +1,23 @@
+<form fxFlex fxLayout="column" [formGroup]="form">
+  <!-- Email -->
+  <mat-form-field appearance="outline">
+    <mat-label> {{ 'AUTH.FORM.USERNAME' | translate }}</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="username"
+      placeholder="Ex. name@example.com"
+    />
+    <mat-error
+      *ngIf="
+        form.get('username')?.hasError('username') && !form.get('username')?.hasError('required')
+      "
+    >
+      {{ 'AUTH.FORM.ERRORS.EMAIL' | translate }}
+    </mat-error>
+    <mat-error *ngIf="form.get('username')?.hasError('required')">
+      {{ 'AUTH.FORM.ERRORS.REQUIRED' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+</form>

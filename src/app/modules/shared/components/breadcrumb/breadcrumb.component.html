@@ -1,0 +1,8 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <mat-icon class="breadcrumb-icon" routerLink="/profile">home</mat-icon>
+    <li class="breadcrumb-item" *ngFor="let route of breadcrumb; let last = last">
+      <span>{{ route.split('/').pop() }}</span>
+    </li>
+  </ol>
+</nav>

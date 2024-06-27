@@ -1,0 +1,102 @@
+<mat-drawer-container class="app-container" autosize>
+  <mat-drawer
+    #drawer
+    class="app-sidenav"
+    mode="side"
+    (openedStart)="calculateExpandedPanel()"
+  >
+    <ng-container
+      [ngTemplateOutlet]="menu"
+      [ngTemplateOutletContext]="{ drawer: drawer }"
+    ></ng-container>
+  </mat-drawer>
+
+  <ng-container
+    [ngTemplateOutlet]="toolbar"
+    [ngTemplateOutletContext]="{ drawer: drawer }"
+  ></ng-container>
+
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+
+<ng-template #toolbar let-drawer="drawer">
+  <mat-toolbar class="app-toolbar" color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img style="height: 25px;" src="assets/imgs/logo.png" />
+    <h1 style="margin-left: 5px;">{{ 'APP_TITLE' | translate }}</h1>
+    <app-breadcrumb></app-breadcrumb>
+    <span class="spacer"></span>
+    <span class="email">{{ currentUser?.sub?.replace("@teoresigroup.com","")}}</span>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="profile">{{ 'MENU.PROFILE' | translate }}</button>
+      <button mat-menu-item (click)="onLogout()">{{ 'MENU.LOGOUT' | translate }}</button>
+    </mat-menu>
+  </mat-toolbar>
+</ng-template>
+
+<ng-template #menu let-drawer="drawer">
+  <div class="sidemenu-header">
+    <img style="margin-top: 20px;" src="assets/imgs/logo.png" />
+    <div class="user-info">
+      <mat-icon>person</mat-icon>
+      <h2>{{ currentUser?.sub }}</h2>
+    </div>
+  </div>
+
+  <mat-nav-list>
+    <ng-container *ngFor="let menuItem of menuItems; let index = index">
+      <ng-container
+        [ngTemplateOutlet]="menuItem?.subMenu ? nestedMenu : menuLink"
+        [ngTemplateOutletContext]="{ menuItem: menuItem, drawer: drawer, index: index }"
+      ></ng-container>
+    </ng-container>
+  </mat-nav-list>
+</ng-template>
+
+<ng-template #nestedMenu let-menuItem="menuItem" let-drawer="drawer" let-index="index">
+  <mat-expansion-panel
+    *ngIf="roleService.hasContentPermission(menuItem.subMenu)"
+    class="mat-elevation-z0"
+    [expanded]="expandedPanel === index"
+  >
+    <mat-expansion-panel-header class="nav-head">
+      <mat-panel-title>
+        <mat-icon class="nav-list-icon">{{ menuItem.icon }}</mat-icon>
+        <span class="mat-list-text">
+          <span matLine>{{ menuItem.title | translate }}</span>
+        </span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="nav-section">
+      <div *ngFor="let child of menuItem.subMenu">
+        <ng-container
+          [ngTemplateOutlet]="menuLink"
+          [ngTemplateOutletContext]="{ menuItem: child, drawer: drawer }"
+        ></ng-container>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</ng-template>
+
+<ng-template #menuLink let-menuItem="menuItem" let-drawer="drawer">
+  <a
+    *ngIf="roleService.hasPermission(menuItem.permission)"
+    (click)="drawer.close()"
+    routerLinkActive="list-item-active"
+    [routerLink]="menuItem.link"
+    mat-list-item
+    matLine
+  >
+    <mat-icon matListIcon class="nav-list-icon">{{ menuItem.icon }}</mat-icon>
+    <span matLine>{{ menuItem.title | translate }}</span>
+  </a>
+</ng-template>

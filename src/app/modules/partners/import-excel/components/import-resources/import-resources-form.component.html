@@ -1,0 +1,26 @@
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title>{{ 'IMPORT_RESOURCES.FORM.TITLE' | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ 'IMPORT_RESOURCES.FORM.SUBTITLE' | translate }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="permissions">
+    <input #csvInput hidden="true" type="file" (change)="csvInputChange($event)" accept=".xlsx" />
+    <button #tooltip="matTooltip" matTooltip="Import xslx file" matTooltipPosition="below" mat-flat-button color="primary" (click)="csvInput.click(); resetUpload()" class="iconButton">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+
+    <div class="file-upload-container">
+      <span class="filename" *ngIf="fileName">{{ fileName }}</span>
+      
+      <div class="upload-container">
+        <div *ngIf="uploadingFile" class="status-indicator" [ngClass]="{'red': uploadProgress === 0, 'green': uploadProgress === 100}"></div>
+        <span *ngIf="uploadingFile && uploadProgress === 0">Upload in Progress<span class="dots">...</span></span>
+        <span *ngIf="uploadingFile && uploadProgress === 100">Upload completed</span>
+        <button mat-button color="warn" *ngIf="uploadProgress === 100" (click)="cancelUpload()">Cancel</button>
+      </div>
+      <textarea *ngIf="uploadProgress === 100 && errorMessage.length > 0" class="textarea-error" rows="20" readonly [ngClass]="{'error': errorMessage.length > 0, 'empty': errorMessage.length === 0}" [value]="getErrorMessageContent()">
+      </textarea>
+    </div>
+    
+  </mat-card-content>
+</mat-card>

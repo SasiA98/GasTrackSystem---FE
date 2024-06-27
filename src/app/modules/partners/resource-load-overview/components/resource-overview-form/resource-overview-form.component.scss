@@ -1,0 +1,173 @@
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.card-container {
+  height: calc(100vh - 20px); 
+  overflow: auto; 
+}
+
+.table-resource-container {
+  min-height: 200px;
+  max-height: 600px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  box-shadow: none;
+}
+
+.small-month{
+  float: right;
+}
+
+.mat-column-unitTrigram, .mat-column-cw {
+  min-width: 45px;
+}
+
+.mat-column-name {
+  min-width: 150px;
+}
+
+.float-left {
+  width: unset !important;
+}
+
+th.mat-header-cell, td.mat-cell {
+  text-align: center;
+  border: 1px solid #CCC;
+  padding: 0 !important;
+  border: 0px;
+}
+
+.mat-form-field-wrapper {
+  position: relative;
+}
+
+.mat-form-field-flex {
+  display: flex;
+  align-items: center;
+}
+
+.mat-card {
+  padding: 6px !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  position: relative;
+}
+
+::ng-deep .mat-form-field-flex {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .mat-form-field-flex > span {
+  position: absolute;
+  top: 100%; 
+  transform: translateY(-50%);
+  margin-left: 10px; 
+}
+
+.badge {
+  margin-right: 8px; 
+  margin-left: 10px;
+  font-size: medium;
+}
+
+.sales-commitment,
+.real-commitment {
+  margin: 1px;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 12px;
+  width: 45px; 
+  max-width: 100px; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  //white-space: nowrap;
+}
+
+.sales-commitment.short-number {
+  text-align: right;
+}
+
+.table td {
+  text-align: center;
+  //white-space: nowrap; 
+  padding: 8px;
+}
+
+.table-container th {
+  background-color: #f2f2f2;
+}
+
+.container {
+  display: flex;
+}
+
+.form {
+  margin-right: 20px;
+}
+
+.card {
+  margin-right: 20px; 
+}
+
+.legend {
+  margin-top: 0;
+  margin-left: -10px; 
+}
+
+.form-container {
+  margin-right: 20px; 
+}
+
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+
+.no-border td{
+  border: none !important;
+}
+
+.spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bg-success {
+  background-color: #28a745 !important;
+}
+
+.bg-warning {
+  background-color: #ffc107 !important;
+}
+
+.bg-orange {
+  background-color: #fd7e14 !important;
+}
+
+.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+.current-month {
+  color: black;
+}
+
+.other-month {
+  color: #d0d2d0;
+}
+
+.float-right {
+  float: right;
+  width: 60%;
+}
+.odd-row {
+  background-color: #eee;
+}
