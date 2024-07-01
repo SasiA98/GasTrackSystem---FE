@@ -5,5 +5,6 @@ export enum TableOperation {
   DELETE,
   MANAGE,
   SHOW_METRICS,
-  CONVERT
+  CONVERT,
+  SEND_EMAIL
 }

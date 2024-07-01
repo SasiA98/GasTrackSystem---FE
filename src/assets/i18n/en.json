@@ -9,6 +9,8 @@
             "UNIT_MANAGEMENT": "Units ",
             "CLIENTI": "Clienti",
             "ELENCO_CLIENTI": "Elenco Clienti",
+            "SCADENZIARIO": "Scadenziario",
+            "ELENCO_SCADENZIARIO": "Elenco Scadenziario",
             "PROJECT_MANAGEMENT": "Project Management",
             "RESOURCE_TIMESHEET": "Resource Timesheet",
             "UNIT_TIMESHEET": "Unit Timesheet",
@@ -93,6 +95,7 @@
         "NEW": "NEW",
         "NEW_UNIT": "CREATE UNIT",
         "NEW_USER": "CREATE USER",
+        "SEND_EMAIL": "Invia email",
         "NEW_RESOURCE": "CREATE RESOURCE",
         "NEW_PROJECT": "CREATE PROJECT",
         "NEW_SKILL": "CREATE SKILL",
@@ -342,6 +345,19 @@
             "INDUSTRY":"Industry",
             "TRIGRAM":"Trigram",
             "REPORTS_TO":"Reports To"
+        }
+    },
+    "COMPANY_LICENCES": {
+        "SEARCH": {
+            "TITLE": "Licenze delle aziende",
+            "SUBTITLE": "Questa pagina colleziona tutte le licenze associate alle varie aziende",
+            "SEARCH_BAR": "Cerca una licenza"
+        },
+        "FIELDS": {
+            "COMPANY_NAME": "Nome Azienda",
+            "LICENCE_NAME": "Nome Licenza",
+            "START_DATE": "Data Inizio",
+            "END_DATE":"Data Fine"
         }
     },
     "TIMESHEET": {

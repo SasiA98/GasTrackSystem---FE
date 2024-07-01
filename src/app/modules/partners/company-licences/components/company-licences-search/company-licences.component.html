@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>{{pageTitle | translate}}</mat-card-title>
+      <mat-card-subtitle>{{'COMPANY_LICENCES.SEARCH.SUBTITLE' | translate}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content fxLayout="column">
+  
+      <ng-container [ngTemplateOutlet]="searchForm">
+  
+      </ng-container>
+      <app-generic-table searchResult (onPageChange)="onPageChange($event)"
+        [totalElements]="searchResult?.totalElements" [numberOfElements]="searchResult?.size"
+        [totalPages]="searchResult?.totalPages" [columns]="columns" [dataSource]="searchResult?.content"
+        [showCheckbox]="false" (onSortChange)="onSortChange($event)"
+        [tableAction]="actions" (onActionClick)="onActionClick($event.model, $event.operation)">
+      </app-generic-table>
+  
+    </mat-card-content>
+  </mat-card>
+  
+  
+  <ng-template #searchForm>
+    <form fxFlexLayout="row" fxLayoutAlign="space-between center" [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+      <div fxLayout="row" fxLayoutAlign="start" class="pb-2 mb-1">
+  
+        <mat-form-field>
+          <mat-label>{{"COMPANY_LICENCES.SEARCH.SEARCH_BAR" | translate}}</mat-label>
+          <input matInput placeholder="Search" formControlName="searchInput">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10" class="pb-2 mb-1">
+        <button type="custom_reset" mat-flat-button color="primary" (click)="eraseSearch()">{{"BUTTONS.RESET" | translate}}</button>
+<!--        <button *ngIf="roleService.hasPermission(ROLE_VISIBILITY.EVERYBODY)" mat-flat-button color="primary" (click)="openCreationDialog()">{{"BUTTONS.NEW_OFFICIAL_TRIGRAM" | translate}}</button>
+      -->
+    </div>
+    </form>
+  </ng-template>

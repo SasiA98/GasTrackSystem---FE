@@ -55,6 +55,20 @@ export const MENU_ITEMS = [
         permission: ROLE_VISIBILITY.LICENZE
       }
     ]
+    },
+    {
+      title: 'MENU.SIDENAV.SCADENZIARIO',
+      icon: 'insert_chart',
+      content: RoutesEnum.ELENCO_SCADENZIARIO,
+      permission: ROLE_VISIBILITY.EVERYBODY,
+      subMenu: [ {
+        title: 'MENU.SIDENAV.ELENCO_SCADENZIARIO',
+        icon: 'contacts',
+        link: RoutesEnum.SCADENZIARIO + "/" + RoutesEnum.ELENCO_SCADENZIARIO,
+        content: RoutesEnum.ELENCO_SCADENZIARIO,
+        permission: ROLE_VISIBILITY.EVERYBODY
+      }
+    ]
     }
     /*
     {

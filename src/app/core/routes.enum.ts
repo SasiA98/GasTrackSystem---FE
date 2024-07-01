@@ -22,5 +22,7 @@ export enum RoutesEnum {
   IMPORT = "import",
   IMPORT_RESOURCES = "import-resources",
   LICENZE = "licenze",
-  ELENCO_LICENZE = "elenco-licenze"
+  ELENCO_LICENZE = "elenco-licenze",
+  SCADENZIARIO = "scadenziario",
+  ELENCO_SCADENZIARIO  = "elenco-scadenziario"
 }

@@ -17,6 +17,7 @@ export const environment = {
     skillgroups: `${apiUrl}/skillsGroups/`,
     timesheetProject: `${apiUrl}/timesheet-projects/`,
     allocations: `${apiUrl}/allocations/`,
+    companyLicences: `${apiUrl}/company-licences/`,
     version: `${apiUrl}/version/`,
     vulnerability: `${apiUrl}/vulnerabilities/`,
     vulnerabilityNotifications: `${apiUrl}/vulnerability-notifications/`,

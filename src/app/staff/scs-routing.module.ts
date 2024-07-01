@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoutesEnum } from 'src/app/core/routes.enum';
 import { ScsComponent } from './scs.component';
-import { PermissionGuard } from '@shared/guards/permission.guard';
-import { title } from 'process';
 
 export interface BreadcrumbData {
   title: string;
@@ -79,6 +77,19 @@ const routes: Routes = [
             data: {
               title: 'OFFICIAL_TRIGRAMS.SEARCH.TITLE',
               breadcrumb: [RoutesEnum.ELENCO_LICENZE]
+            } as BreadcrumbData
+          }
+        ]
+      },
+      {
+        path: RoutesEnum.SCADENZIARIO,
+        children: [
+          {
+            path: RoutesEnum.ELENCO_SCADENZIARIO,
+            loadChildren: () => import('../modules/partners/company-licences/company-licences.module').then((m) => m.CompanyLicencesModule),
+            data: {
+              title: 'COMPANY_LICENCES.SEARCH.TITLE',
+              breadcrumb: [RoutesEnum.ELENCO_SCADENZIARIO]
             } as BreadcrumbData
           }
         ]
