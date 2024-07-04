@@ -22,6 +22,7 @@ import { ROLE_VISIBILITY } from '@shared/constants/role-visibility.constants';
 import { CompanyLicenceTableAction } from '../../constants/company-licences-table-actions.constant';
 import { CompanyLicenceTableColumns } from '../../constants/company-licences-table-columns.constant';
 import { CompanyLicencesCreationDialogComponent } from '../company-licences-creation-dialog/company-licences-creation-dialog.component';
+import { TableOperation } from '@shared/components/generic-table/config/table-operation';
 
 
 @Component({
@@ -122,6 +123,24 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     });
   }
 
+  onActionClick(model: any, operation: number) {
+    switch (operation) {
+      case TableOperation.EDIT: this.onDetailClick(model); break;
+    }
+  }
+
+  onDetailClick(companyLicence: CompanyLicence) {
+
+    const dialogRef = this.dialog.open(CompanyLicencesCreationDialogComponent, {
+      data: companyLicence
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.onSubmit();
+      this.showSuccessMessage();
+    });
+  }
+
 
 
   startInterval() {
@@ -138,14 +157,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     }
   }
   
-
   
-  onActionClick(model: any, operation: number) {
-    switch (operation) {
-    }
-  }
-
-
   protected defineSortCriteria(): string | { [key: string]: 'asc' | 'desc' } {
     return { "company.name" : 'asc' };
   }

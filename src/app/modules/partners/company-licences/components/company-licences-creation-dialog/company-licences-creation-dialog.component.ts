@@ -31,9 +31,9 @@ export class CompanyLicencesCreationDialogComponent {
     this.form = this.createForm();
     if (this.data) {
       this.form.patchValue({
-        company: new FormGroup({
-          id: new FormControl('', [Validators.required])
-        }),
+        company: {
+          id: this.data.company.id
+        },
         licenceName: this.data.licenceName,
         expiryDate: this.data.expiryDate,
 

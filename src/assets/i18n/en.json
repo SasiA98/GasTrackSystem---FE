@@ -375,6 +375,11 @@
         "FIELDS": {
             "NAME": "NOME",
             "EMAIL": "EMAIL"
+        },
+        "FORM": {
+            "TITLE": "Punto vendita",
+            "UPDATE_SUBTITLE": "Aggiorna punto vendita",
+            "NEW_SUBTITLE": "Inserisci punto vendita"
         }
     },
     "TIMESHEET": {

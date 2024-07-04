@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: OfficialTrigramsComponent,
     data: {
-      permission: ROLE_VISIBILITY.LICENZE
+      permission: ROLE_VISIBILITY.EVERYBODY
     },
   },
 ];

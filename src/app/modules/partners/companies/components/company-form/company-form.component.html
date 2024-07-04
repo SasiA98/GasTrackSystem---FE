@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>{{pageTitle | translate}}  : {{companyName}} </mat-card-title>
+        <mat-card-title>{{pageTitle | translate}} {{isInsert() ? "" : ": "}} {{companyName}} </mat-card-title>
         <mat-card-subtitle>{{ (isInsert() ? 'COMPANIES.FORM.NEW_SUBTITLE' : 'COMPANIES.FORM.UPDATE_SUBTITLE') | translate}}</mat-card-subtitle>
     </mat-card-header>
 
