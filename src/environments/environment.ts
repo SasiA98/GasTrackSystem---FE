@@ -8,6 +8,7 @@ export const environment = {
     users: `${apiUrl}/users/`,
     profile:  `${apiUrl}/profile/`,
     units: `${apiUrl}/units/`,
+    companies: `${apiUrl}/companies/`,
     resources: `${apiUrl}/resources/`,
     projects: `${apiUrl}/projects/`,
     timesheet: `${apiUrl}/timesheet/`,

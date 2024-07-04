@@ -6,5 +6,6 @@ export enum TableOperation {
   MANAGE,
   SHOW_METRICS,
   CONVERT,
-  SEND_EMAIL
+  SEND_EMAIL,
+  DOWNLOAD
 }

@@ -32,7 +32,7 @@ export const DISABLED_FILTER = null;
 })
 
 export class ResourceSearchComponent extends AdvancedSearchBasePageComponent<PageResponse<Resource>> {
-  content: string = RoutesEnum.ELENCO_CLIENTI;
+  content: string = RoutesEnum.COMPANIES;
   ROLE_VISIBILITY = ROLE_VISIBILITY;
   Role = Role;
   columns: Column[] = ResourceTableColumns.filter(col =>

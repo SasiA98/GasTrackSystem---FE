@@ -2,15 +2,7 @@ import { TableOperation } from '@shared/components/generic-table/config/table-op
 import { TableAction } from '@shared/components/generic-table/config/table-action';
 
 
-export const CompanyLicenceTableAction : TableAction[] = [
-  {
-    operation: TableOperation.EDIT,
-    title: 'BUTTONS.EDIT'
-  },
-  {
-    operation: TableOperation.DOWNLOAD,
-    title: 'BUTTONS.DOWNLOAD'
-  },
+export const CompanyTableAction : TableAction[] = [
   {
     operation: TableOperation.SEND_EMAIL,
     title: 'BUTTONS.SEND_EMAIL'

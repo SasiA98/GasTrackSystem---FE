@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -35,6 +35,16 @@ import { emailTEOValidator } from '@shared/validators/emailTEOValidator';
   templateUrl: './resource-form.component.html',
   styleUrls: ['./resource-form.component.scss']
 })
+
+export function emailValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Regex per validare l'email
+    const valid = emailRegex.test(control.value);
+    return valid ? null : { invalidEmail: { value: control.value } };
+  };
+}
+
+
 export class ResourceFormComponent extends FormBasePageComponent<Resource> {
 
   ResourceStatus = ResourceStatus;
@@ -169,7 +179,7 @@ export class ResourceFormComponent extends FormBasePageComponent<Resource> {
       employeeId: new FormControl('', [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]+$')]),
       name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
       surname: new FormControl('', [Validators.required, Validators.maxLength(255)]),
-      email: new FormControl('', [Validators.required, Validators.maxLength(255), emailTEOValidator(), Validators.minLength(18)]),
+      email: new FormControl('', [Validators.required, Validators.maxLength(255), emailvalidator(), Validators.minLength(18)]),
       birthDate: new FormControl('', [Validators.required, minimumAgeValidator(18)]),
       lastWorkingTime: new FormControl(40, [Validators.required, Validators.pattern('^[0-9]+$')]),
       lastWorkingTimeStartDate: new FormControl('',[Validators.required]),

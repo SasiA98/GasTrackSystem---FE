@@ -18,9 +18,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyLicence } from '@shared/models/company-licence.model';
 import { CompanyLicenceService } from '@shared/services/company-licence.service';
-import { TableOperation } from '@shared/components/generic-table/config/table-operation';
+import { ROLE_VISIBILITY } from '@shared/constants/role-visibility.constants';
 import { CompanyLicenceTableAction } from '../../constants/company-licences-table-actions.constant';
 import { CompanyLicenceTableColumns } from '../../constants/company-licences-table-columns.constant';
+import { CompanyLicencesCreationDialogComponent } from '../company-licences-creation-dialog/company-licences-creation-dialog.component';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
 
   actions = CompanyLicenceTableAction;
   columns = CompanyLicenceTableColumns;
+  ROLE_VISIBILITY = ROLE_VISIBILITY;
 
   form = new FormGroup({
     searchInput: new FormControl('')
@@ -91,7 +93,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
 
   private getLicenceNameOperand(name: String): AdvancedSearchSimpleCriteria {
     return {
-        field: 'licence.name',
+        field: 'licenceName',
         value: name,
         operator: AdvancedSearchOperator.IS_LIKE
     }
@@ -105,6 +107,19 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
         value: name,
         operator: AdvancedSearchOperator.IS_LIKE
     }
+  }
+
+  openCreationDialog(): void {
+    const dialogRef = this.dialog.open(CompanyLicencesCreationDialogComponent, {
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        this.onSubmit();
+        this.showSuccessMessage();
+      }
+    });
   }
 
 
@@ -132,7 +147,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
 
 
   protected defineSortCriteria(): string | { [key: string]: 'asc' | 'desc' } {
-    return { "licence.name" : 'asc' };
+    return { "company.name" : 'asc' };
   }
   
   onNewClick(): void {

@@ -4,68 +4,30 @@ import { ROLE_VISIBILITY } from "./role-visibility.constants";
 
 export const MENU_ITEMS = [
     {
-      title: 'MENU.SIDENAV.CLIENTI',
+      title: 'MENU.SIDENAV.COMPANIES',
       icon: 'settings',
-      content: RoutesEnum.ELENCO_CLIENTI,
-      permission: ROLE_VISIBILITY.CLIENTI,
+      content: RoutesEnum.COMPANIES,
+      permission: ROLE_VISIBILITY.EVERYBODY,
       subMenu: [
         {
-          title: 'MENU.SIDENAV.ELENCO_CLIENTI',
+          title: 'MENU.SIDENAV.LISTS',
           icon: 'assignment_ind',
-          link: RoutesEnum.CLIENTI + "/" + RoutesEnum.ELENCO_CLIENTI,
-          content: RoutesEnum.ELENCO_CLIENTI,
-          permission: ROLE_VISIBILITY.CLIENTI
+          link: RoutesEnum.COMPANIES + "/" + RoutesEnum.LISTS,
+          content: RoutesEnum.LISTS,
+          permission: ROLE_VISIBILITY.EVERYBODY
         },
-
-        /*
-        {
-          title: 'MENU.SIDENAV.USER_MANAGEMENT',
-          icon: 'group',
-          link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.USERS,
-          content: RoutesEnum.USERS,
-          permission: ROLE_VISIBILITY.USERS
-        },
-        {
-          title: 'MENU.SIDENAV.UNIT_MANAGEMENT',
-          icon: 'domain',
-          link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.UNITS,
-          content: RoutesEnum.UNITS,
-          permission: ROLE_VISIBILITY.UNITS
-        },
-        {
-          title: 'MENU.SIDENAV.PROJECT_MANAGEMENT',
-          icon: 'work',
-          link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.PROJECTS,
-          content: RoutesEnum.PROJECTS,
-          permission: ROLE_VISIBILITY.PROJECTS
-        },
-        */
       ]
     },
     {
-      title: 'MENU.SIDENAV.LICENZE',
-      icon: 'person_pin',
-      content: RoutesEnum.ELENCO_LICENZE,
-      permission: ROLE_VISIBILITY.LICENZE,
-      subMenu: [ {
-        title: 'MENU.SIDENAV.ELENCO_LICENZE',
-        icon: 'contacts',
-        link: RoutesEnum.LICENZE + "/" + RoutesEnum.ELENCO_LICENZE,
-        content: RoutesEnum.ELENCO_LICENZE,
-        permission: ROLE_VISIBILITY.LICENZE
-      }
-    ]
-    },
-    {
-      title: 'MENU.SIDENAV.SCADENZIARIO',
+      title: 'MENU.SIDENAV.LICENCES',
       icon: 'insert_chart',
-      content: RoutesEnum.ELENCO_SCADENZIARIO,
+      content: RoutesEnum.LISTS,
       permission: ROLE_VISIBILITY.EVERYBODY,
       subMenu: [ {
-        title: 'MENU.SIDENAV.ELENCO_SCADENZIARIO',
+        title: 'MENU.SIDENAV.LISTS',
         icon: 'contacts',
-        link: RoutesEnum.SCADENZIARIO + "/" + RoutesEnum.ELENCO_SCADENZIARIO,
-        content: RoutesEnum.ELENCO_SCADENZIARIO,
+        link: RoutesEnum.LICENCES + "/" + RoutesEnum.LISTS,
+        content: RoutesEnum.LISTS,
         permission: ROLE_VISIBILITY.EVERYBODY
       }
     ]
@@ -151,3 +113,28 @@ export const MENU_ITEMS = [
     }
     */
   ];
+
+
+    /*
+        {
+          title: 'MENU.SIDENAV.USER_MANAGEMENT',
+          icon: 'group',
+          link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.USERS,
+          content: RoutesEnum.USERS,
+          permission: ROLE_VISIBILITY.USERS
+        },
+        {
+          title: 'MENU.SIDENAV.UNIT_MANAGEMENT',
+          icon: 'domain',
+          link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.UNITS,
+          content: RoutesEnum.UNITS,
+          permission: ROLE_VISIBILITY.UNITS
+        },
+        {
+          title: 'MENU.SIDENAV.PROJECT_MANAGEMENT',
+          icon: 'work',
+          link: RoutesEnum.MANAGEMENT + "/" + RoutesEnum.PROJECTS,
+          content: RoutesEnum.PROJECTS,
+          permission: ROLE_VISIBILITY.PROJECTS
+        },
+        */

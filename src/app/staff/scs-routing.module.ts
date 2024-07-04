@@ -27,7 +27,7 @@ const routes: Routes = [
         } as BreadcrumbData
       },
       {
-        path: RoutesEnum.CLIENTI,
+        path: RoutesEnum.COMPANIES,
         children: [
           {
             path: '',
@@ -51,11 +51,11 @@ const routes: Routes = [
             } as BreadcrumbData
           },
           {
-            path: RoutesEnum.ELENCO_CLIENTI,
-            loadChildren: () => import('../modules/partners/resources/resources.module').then((m) => m.ResourcesModule),
+            path: RoutesEnum.LISTS,
+            loadChildren: () => import('../modules/partners/companies/companies.module').then((m) => m.CompaniesModule),
             data: {
-              title: 'RESOURCES.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.ELENCO_CLIENTI]
+              title: 'COMPANIES.SEARCH.TITLE',
+              breadcrumb: [RoutesEnum.LISTS]
             } as BreadcrumbData
           },
           {
@@ -69,27 +69,14 @@ const routes: Routes = [
         ]
       },
       {
-        path: RoutesEnum.LICENZE,
+        path: RoutesEnum.LICENCES,
         children: [
           {
-            path: RoutesEnum.ELENCO_LICENZE,
-            loadChildren: () => import('../modules/partners/official-trigrams/official-trigrams.module').then((m) => m.OfficialTrigramsModule),
-            data: {
-              title: 'OFFICIAL_TRIGRAMS.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.ELENCO_LICENZE]
-            } as BreadcrumbData
-          }
-        ]
-      },
-      {
-        path: RoutesEnum.SCADENZIARIO,
-        children: [
-          {
-            path: RoutesEnum.ELENCO_SCADENZIARIO,
+            path: RoutesEnum.LISTS,
             loadChildren: () => import('../modules/partners/company-licences/company-licences.module').then((m) => m.CompanyLicencesModule),
             data: {
               title: 'COMPANY_LICENCES.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.ELENCO_SCADENZIARIO]
+              breadcrumb: [RoutesEnum.LISTS]
             } as BreadcrumbData
           }
         ]

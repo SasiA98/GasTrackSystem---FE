@@ -1,0 +1,38 @@
+<mat-card-header>
+    <mat-card-title>{{ 'COMPANY_LICENCES.FIELDS.NEW' | translate }}</mat-card-title>
+  </mat-card-header>
+  <mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" style="margin-top: 5px;">
+  
+        <mat-form-field fxFlex formGroupName="company" check-visibility control="company.id">
+          <mat-label>{{ 'COMPANY_LICENCES.FIELDS.COMPANY' | translate }}</mat-label>
+          <mat-select formControlName="id" required>
+            <mat-option *ngFor="let company of companies" [value]="company.id">
+              {{ company.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+  
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'COMPANY_LICENCES.FIELDS.LICENCE' | translate }}</mat-label>
+          <input matInput formControlName="licenceName" maxlength="255" required>
+        </mat-form-field>
+  
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'COMPANY_LICENCES.FIELDS.EXPIRY_DATE' | translate }}</mat-label>
+          <input matInput [matDatepicker]="expiryDatePicker" formControlName="expiryDate" required/>
+          <mat-datepicker-toggle matSuffix [for]="expiryDatePicker" required></mat-datepicker-toggle>
+          <mat-datepicker #expiryDatePicker></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+        <button [disabled]="!form.valid" type="submit" mat-flat-button color="primary" class="inline">
+            {{ 'BUTTONS.SAVE' | translate }}
+        </button>      
+      </form>
+  </mat-dialog-content>
+  

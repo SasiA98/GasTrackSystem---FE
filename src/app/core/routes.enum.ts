@@ -1,15 +1,15 @@
 export enum RoutesEnum {
-  CLIENTI = 'management',
+  COMPANIES = 'clienti',
+  COMPANY_LISTS = 'elenco-clienti',
   USERS = 'users',
   UNITS = 'units',
-  ELENCO_CLIENTI = 'resources',
   PROJECTS = 'projects',
   DATA_MANAGEMENT = "data-management",
   RESOURCE_TIMESHEET = 'resource-timesheet',
   UNIT_TIMESHEET = 'unit-timesheet',
   PROFILE = 'profile',
   DETAIL = 'detail',
-  NEW = 'new',
+  NEW = 'nuovo',
   FILTER = 'filter',
   TIMESHEET = "timesheet",
   USER_STATUS = "user-status",
@@ -23,6 +23,6 @@ export enum RoutesEnum {
   IMPORT_RESOURCES = "import-resources",
   LICENZE = "licenze",
   ELENCO_LICENZE = "elenco-licenze",
-  SCADENZIARIO = "scadenziario",
-  ELENCO_SCADENZIARIO  = "elenco-scadenziario"
+  LICENCES = "documenti",
+  LISTS  = "elenco"
 }

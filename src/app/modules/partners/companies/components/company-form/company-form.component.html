@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{pageTitle | translate}}  : {{companyName}} </mat-card-title>
+        <mat-card-subtitle>{{ (isInsert() ? 'COMPANIES.FORM.NEW_SUBTITLE' : 'COMPANIES.FORM.UPDATE_SUBTITLE') | translate}}</mat-card-subtitle>
+    </mat-card-header>
+
+
+    <mat-card-content fxLayout="column">
+        <form fxFlex [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row" fxLayoutGap="5px">
+                <mat-form-field fxFlex check-visibility control="name">
+                    <mat-label>{{'COMPANIES.FIELDS.NAME' | translate}}</mat-label>
+                    <input matInput formControlName="name" maxlength="255" required>
+                </mat-form-field>
+                <mat-form-field fxFlex check-visibility control="email">
+                    <mat-label>{{'COMPANIES.FIELDS.EMAIL' | translate}}</mat-label>
+                    <input matInput formControlName="email" maxlength="255" required>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-5">
+                <button type="reset" mat-button color="primary" (click)="goBack()">{{"BUTTONS.BACK" | translate}}</button>
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10">
+                    <button type="submit" mat-flat-button color="primary">{{"BUTTONS.SAVE" | translate}}</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
