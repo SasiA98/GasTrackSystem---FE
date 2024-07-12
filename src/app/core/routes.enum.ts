@@ -1,6 +1,9 @@
 export enum RoutesEnum {
-  COMPANIES = 'clienti',
-  COMPANY_LISTS = 'elenco-clienti',
+  COMPANIES = 'punti-vendita',
+  COMPANY_LICENCES = "contratti",
+  LICENCES = "documenti",
+  LISTS  = "elenco",
+
   USERS = 'users',
   UNITS = 'units',
   PROJECTS = 'projects',
@@ -21,8 +24,5 @@ export enum RoutesEnum {
   IMPORT_OVERVIEW = "import-overview",
   IMPORT = "import",
   IMPORT_RESOURCES = "import-resources",
-  LICENZE = "licenze",
-  ELENCO_LICENZE = "elenco-licenze",
-  LICENCES = "documenti",
-  LISTS  = "elenco"
+  ELENCO_LICENZE = "elenco-licenze"
 }

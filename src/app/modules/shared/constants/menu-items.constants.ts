@@ -19,6 +19,20 @@ export const MENU_ITEMS = [
       ]
     },
     {
+      title: 'MENU.SIDENAV.COMPANY_LICENCES',
+      icon: 'insert_chart',
+      content: RoutesEnum.LISTS,
+      permission: ROLE_VISIBILITY.EVERYBODY,
+      subMenu: [ {
+        title: 'MENU.SIDENAV.LISTS',
+        icon: 'contacts',
+        link: RoutesEnum.COMPANY_LICENCES + "/" + RoutesEnum.LISTS,
+        content: RoutesEnum.LISTS,
+        permission: ROLE_VISIBILITY.EVERYBODY
+      }
+    ]
+    },
+    {
       title: 'MENU.SIDENAV.LICENCES',
       icon: 'insert_chart',
       content: RoutesEnum.LISTS,

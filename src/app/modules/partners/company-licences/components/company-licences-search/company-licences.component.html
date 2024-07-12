@@ -29,7 +29,28 @@
           <input matInput placeholder="Search" formControlName="searchInput">
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+          <mat-form-field fxFlex>
+            <mat-label>{{ 'COMPANY_LICENCES.FIELDS.MONTH' | translate }}</mat-label>
+            <mat-select formControlName="month">
+              <mat-option *ngFor="let month of months" [value]="month.value">
+                {{ month.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field fxFlex check-visibility control="year">
+            <mat-label>{{"COMPANY_LICENCES.FIELDS.YEAR" | translate}}</mat-label>
+            <mat-select formControlName="year">
+              <mat-option *ngFor="let year of years" [value]="year">
+                {{ year }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
+    
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10" class="pb-2 mb-1">
         <button type="custom_reset" mat-flat-button color="primary" (click)="resetSearch()">Resetta Filtro</button>
         <button *ngIf="roleService.hasPermission(ROLE_VISIBILITY.EVERYBODY)" mat-flat-button color="primary" (click)="openCreationDialog()">{{"BUTTONS.NEW_COMPANY_LICENCE" | translate}}</button>

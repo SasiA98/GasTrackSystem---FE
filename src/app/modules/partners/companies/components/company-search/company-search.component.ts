@@ -15,7 +15,7 @@ import { EmptyObject } from 'src/app/base/types/empty-object.type';
 import { RoutesEnum } from 'src/app/core/routes.enum';
 import { RolePermissionService } from '@shared/services/role-permission.service';
 import { ROLE_VISIBILITY } from '@shared/constants/role-visibility.constants';
-import { CompanyTableColumns } from '../constants/companies-table-columns.constant';
+import { LicenceTableColumns } from '../constants/companies-table-columns.constant';
 import { Company } from '@shared/models/company.model';
 import { CompanyService } from '@shared/services/company.service';
 
@@ -32,7 +32,7 @@ export class CompanySearchComponent extends AdvancedSearchBasePageComponent<Page
   content: string = RoutesEnum.COMPANIES;
   Role = Role;
   ROLE_VISIBILITY = ROLE_VISIBILITY;
-  columns: Column[] = CompanyTableColumns;
+  columns: Column[] = LicenceTableColumns;
 
   form = new FormGroup({
     searchInput: new FormControl('')

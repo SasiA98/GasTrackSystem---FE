@@ -14,12 +14,14 @@
           </mat-select>
         </mat-form-field>
 
-  
-        <mat-form-field fxFlex>
+        <mat-form-field fxFlex formGroupName="licence" check-visibility control="licence.id">
           <mat-label>{{ 'COMPANY_LICENCES.FIELDS.LICENCE' | translate }}</mat-label>
-          <input matInput formControlName="licenceName" maxlength="255" required>
+          <mat-select formControlName="id" required>
+            <mat-option *ngFor="let licence of licences" [value]="licence.id">
+              {{ licence.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-  
 
         <mat-form-field fxFlex>
           <mat-label>{{ 'COMPANY_LICENCES.FIELDS.EXPIRY_DATE' | translate }}</mat-label>

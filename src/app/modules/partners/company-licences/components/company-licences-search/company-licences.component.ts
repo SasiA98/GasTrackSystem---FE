@@ -23,6 +23,8 @@ import { CompanyLicenceTableAction } from '../../constants/company-licences-tabl
 import { CompanyLicenceTableColumns } from '../../constants/company-licences-table-columns.constant';
 import { CompanyLicencesCreationDialogComponent } from '../company-licences-creation-dialog/company-licences-creation-dialog.component';
 import { TableOperation } from '@shared/components/generic-table/config/table-operation';
+import { CompanyLicencesSendEmailDialogComponent } from '../company-licences-send-email-dialog/company-licences-send-email-dialog.component';
+
 
 
 @Component({
@@ -36,8 +38,27 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
   columns = CompanyLicenceTableColumns;
   ROLE_VISIBILITY = ROLE_VISIBILITY;
 
+  months = [
+    { value: 1, viewValue: 'Gennaio' },
+    { value: 2, viewValue: 'Febbraio' },
+    { value: 3, viewValue: 'Marzo' },
+    { value: 4, viewValue: 'Aprile' },
+    { value: 5, viewValue: 'Maggio' },
+    { value: 6, viewValue: 'Giugno' },
+    { value: 7, viewValue: 'Luglio' },
+    { value: 8, viewValue: 'Agosto' },
+    { value: 9, viewValue: 'Settembre' },
+    { value: 10, viewValue: 'Ottobre' },
+    { value: 11, viewValue: 'Novembre' },
+    { value: 12, viewValue: 'Dicembre' }
+  ];
+
+  years: number[] = [];
+
   form = new FormGroup({
-    searchInput: new FormControl('')
+    searchInput: new FormControl(''),
+    month: new FormControl(new Date().getMonth() + 1),
+    year: new FormControl(new Date().getFullYear())
   });
 
   private searchSubscription!: Subscription;
@@ -56,12 +77,35 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     private readonly dialog: MatDialog
   ) {
     super(injector, ngxUiLoaderService);
+    this.generateYears();
+
     this.startSearchOnInit = true;
     this.searchSubscription = this.form.get('searchInput')!.valueChanges.subscribe(() => {
       this.startInterval();
     });
+
+    this.form.get('month')?.valueChanges.subscribe(() => this.onSubmit());
+    this.form.get('year')?.valueChanges.subscribe(() => this.onSubmit());
   }
- 
+
+  generateYears() {
+    const currentYear = new Date().getFullYear();
+    const startYear = currentYear - 3;
+    const endYear = currentYear + 3;
+    for (let year = startYear; year <= endYear; year++) {
+      this.years.push(year);
+    }
+  }
+
+
+  override resetSearch(): void {
+    this.form.reset();
+    super.resetSearch();
+    this.form.patchValue({month: new Date().getMonth() + 1});
+    this.form.patchValue({year: new Date().getFullYear()});
+  }
+
+
   protected search(
     criteria?: AdvancedSearchCriteria | AdvancedSearchSimpleCriteria,
     sortCriteria?: PagingAndSortingCriteria
@@ -76,38 +120,49 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
   | EmptyObject {
 
     const name = this.form.get('searchInput')?.value || "";
+    const month = this.form.get('month')?.value || 1;
+    const year = this.form.get('year')?.value || 2024;
+
 
     const criteriaArray: (AdvancedSearchCriteria | AdvancedSearchSimpleCriteria)[] = [];
 
-    const companyNameOperand = this.getCompanyNameOperand(name);
-    const licenceNameOperand = this.getLicenceNameOperand(name);
+    const nameOperand = this.getNameOperand(name);
 
-    criteriaArray.push(companyNameOperand);
-    criteriaArray.push(licenceNameOperand);
+    const date = new Date(year, month - 1);
+    const expiryDateOperand = this.getExpiryDateOperand(date);
 
+    criteriaArray.push(nameOperand);
+    criteriaArray.push(expiryDateOperand);
 
-    const result: AdvancedSearchCriteria | AdvancedSearchSimpleCriteria = this.createOrComplexCriteria(criteriaArray);
+    const result: AdvancedSearchCriteria | AdvancedSearchSimpleCriteria = this.createAndComplexCriteria(criteriaArray);
 
     return result;
   }
 
 
-  private getLicenceNameOperand(name: String): AdvancedSearchSimpleCriteria {
+  private getExpiryDateOperand(date: Date): AdvancedSearchSimpleCriteria {
+
     return {
-        field: 'licenceName',
-        value: name,
-        operator: AdvancedSearchOperator.IS_LIKE
+        field: 'expiryDate',
+        value: date,
+        operator: AdvancedSearchOperator.IS_DATE_GTE
     }
   }
 
-  
-
-  private getCompanyNameOperand(name: String): AdvancedSearchSimpleCriteria {
+  private getNameOperand(name: String): AdvancedSearchCriteria {
     return {
+      operandOne: {
         field: 'company.name',
         value: name,
         operator: AdvancedSearchOperator.IS_LIKE
-    }
+      },
+      operandTwo: {
+        field: 'licence.name',
+        value: name,
+        operator: AdvancedSearchOperator.IS_LIKE
+      },
+      operator: 'OR',
+   };
   }
 
   openCreationDialog(): void {
@@ -124,8 +179,11 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
   }
 
   onActionClick(model: any, operation: number) {
+    
+    console.log(operation);
     switch (operation) {
       case TableOperation.EDIT: this.onDetailClick(model); break;
+      case TableOperation.SEND_EMAIL: this.onSendEmailClick(model); break;
     }
   }
 
@@ -142,6 +200,18 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
   }
 
 
+  onSendEmailClick(companyLicence: CompanyLicence) {
+
+    const dialogRef = this.dialog.open(CompanyLicencesSendEmailDialogComponent, {
+      data: companyLicence
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.onSubmit();
+      this.showSuccessMessage();
+    });
+  }
+
 
   startInterval() {
     this.clearInterval(); // Cancella il timer precedente se esiste
@@ -156,12 +226,12 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
       this.searchTimer = null;
     }
   }
-  
-  
+
+
   protected defineSortCriteria(): string | { [key: string]: 'asc' | 'desc' } {
     return { "company.name" : 'asc' };
   }
-  
+
   onNewClick(): void {
     this.router.navigate([RoutesEnum.NEW], { relativeTo: this.activatedRoute });
   }
@@ -185,7 +255,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     this.changeSort(sort.field, sort.direction || 'asc');
   }
 
-  
+
   eraseSearch(): void {
     this.form.reset();
     this.onSubmit();

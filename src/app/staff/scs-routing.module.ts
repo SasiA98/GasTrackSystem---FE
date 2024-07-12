@@ -69,7 +69,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: RoutesEnum.LICENCES,
+        path: RoutesEnum.COMPANY_LICENCES,
         children: [
           {
             path: RoutesEnum.LISTS,
@@ -82,85 +82,18 @@ const routes: Routes = [
         ]
       },
       {
-        path: RoutesEnum.TIMESHEET,
+        path: RoutesEnum.LICENCES,
         children: [
           {
-            path: RoutesEnum.RESOURCE_TIMESHEET,
-            loadChildren: () => import('../modules/partners/timesheet/timesheet.module').then((m) => m.TimesheetModule),
+            path: RoutesEnum.LISTS,
+            loadChildren: () => import('../modules/partners/licences/licences.module').then((m) => m.LicencesModule),
             data: {
-              title: 'TIMESHEET.FORM.TITLE',
-              breadcrumb: [RoutesEnum.RESOURCE_TIMESHEET]
-            } as BreadcrumbData
-          },
-          {
-            path: RoutesEnum.UNIT_TIMESHEET,
-            loadChildren: () => import('../modules/partners/unit-timesheet/unit-timesheet.module').then((m) => m.UnitTimesheetModule),
-            data: {
-              title: 'UNIT_TIMESHEET.FORM.TITLE',
-              breadcrumb: [RoutesEnum.UNIT_TIMESHEET]
+              title: 'LICENCES.SEARCH.TITLE',
+              breadcrumb: [RoutesEnum.LISTS]
             } as BreadcrumbData
           }
         ]
-      },
-      {
-        path: RoutesEnum.GANTT,
-        children: [
-          {
-            path: RoutesEnum.RESOURCE_GANT_OVERVIEW,
-            loadChildren: () => import('../modules/partners/resource-load-overview/resource-overview.module').then((m) => m.ResourceOverviewModule),
-            data: {
-              title: 'RESOURCE_LOAD_OVERVIEW.FORM.TITLE',
-              breadcrumb: [RoutesEnum.RESOURCE_GANT_OVERVIEW]
-            } as BreadcrumbData
-          },
-             {
-                      path: RoutesEnum.PROJECTS_GANT_OVERVIEW,
-                      data: {
-                        title: 'PROJECTS_GANT_OVERVIEW.FORM.TITLE',
-                        content: RoutesEnum.PROJECTS_GANT_OVERVIEW,
-                        breadcrumb: [RoutesEnum.PROJECTS_GANT_OVERVIEW]
-                      } as BreadcrumbData,
-                      loadChildren: () =>
-                        import('../modules/partners/resource-load-overview/project-overview.module').then((m) => m.ProjectOverviewModule)
-                    }
-        ]
-      },
-      {
-        path: RoutesEnum.SKILLS_OVERVIEW,
-        children: [
-          {
-            path: RoutesEnum.SKILLS,
-            loadChildren: () => import('../modules/partners/skills/skills.module').then((m) => m.SkillsModule),
-            data: {
-              title: 'SKILLS.FORM.TITLE',
-              breadcrumb: [RoutesEnum.SKILLS]
-            } as BreadcrumbData
-          }
-        ]
-      },
-      /*
-      {
-        path: RoutesEnum.IMPORT_OVERVIEW,
-        children: [
-          {
-            path: RoutesEnum.IMPORT,
-            loadChildren: () => import('../modules/partners/import-excel/import.module').then((m) => m.ImportModule),
-            data: {
-              title: 'IMPORT.FORM.TITLE',
-              breadcrumb: [RoutesEnum.IMPORT]
-            } as BreadcrumbData
-          },
-          {
-            path: RoutesEnum.IMPORT_RESOURCES,
-            loadChildren: () => import('../modules/partners/import-excel/import-resources.module').then((m) => m.ImportResourcesModule),
-          data: {
-            title: 'IMPORT.FORM.TITLE',
-            breadcrumb : [RoutesEnum.IMPORT_RESOURCES]
-          } as BreadcrumbData      
-         }
-        ]
-      },
-      */
+      }
     ]
   }
 ];

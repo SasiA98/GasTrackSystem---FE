@@ -7,7 +7,8 @@
             "MANAGEMENT": "Management",
             "USER_MANAGEMENT": "Users",
             "UNIT_MANAGEMENT": "Units ",
-            "COMPANIES": "Clienti",
+            "COMPANIES": "Punti Vendita",
+            "COMPANY_LICENCES": "Contratti",
             "LICENCES": "Documenti",
             "LISTS": "Elenco",
             "SCADENZIARIO": "Scadenziario",
@@ -96,8 +97,9 @@
         "DOWNLOAD": "SCARICA DOCUMENTI",
         "SEND_EMAIL": "INVIA EMAIL",
         "NEW_UNIT": "CREATE UNIT",
-        "NEW_COMPANY_LICENCE": "Crea nuova associazione",
-        "NEW_COMPANY": "Crea punto vendita",
+        "NEW_LICENCE": "Crea",
+        "NEW_COMPANY_LICENCE": "Crea",
+        "NEW_COMPANY": "Crea",
         "NEW_USER": "CREATE USER",
         "NEW_RESOURCE": "CREATE RESOURCE",
         "NEW_PROJECT": "CREATE PROJECT",
@@ -183,7 +185,7 @@
             "STATUS": "Status"
         }
     },
-   
+
     "RESOURCES": {
         "SEARCH": {
             "TITLE": "Resources",
@@ -360,7 +362,11 @@
         "FIELDS": {
             "COMPANY": "Punto Vendita",
             "NEW": "Nuova Associazione",
+            "MONTH": "Mese",
+            "YEAR": "Anno",
+
             "LICENCE": "Documento",
+            "EMAIL_SENT": "Email Inviata Mese Prima",
             "COMPANY_NAME": "Punto Vendita",
             "LICENCE_NAME": "Documento",
             "EXPIRY_DATE": "Data Scadenza"
@@ -380,6 +386,22 @@
             "TITLE": "Punto vendita",
             "UPDATE_SUBTITLE": "Aggiorna punto vendita",
             "NEW_SUBTITLE": "Inserisci punto vendita"
+        }
+    },
+    "LICENCES": {
+        "SEARCH": {
+            "TITLE": "Documenti",
+            "SUBTITLE": "Questa pagina colleziona tutti i documenti",
+            "SEARCH_BAR": "Cerca"
+        },
+        "FIELDS": {
+            "NAME": "Nome",
+            "NOTE": "Note"
+        },
+        "FORM": {
+            "TITLE": "Documento",
+            "UPDATE_SUBTITLE": "Aggiorna documento",
+            "NEW_SUBTITLE": "Inserisci documento"
         }
     },
     "TIMESHEET": {

@@ -6,6 +6,8 @@ import { CompanyLicenceService } from '@shared/services/company-licence.service'
 import { Industry } from '@shared/enums/industry.enum';
 import { CompanyLicence } from '@shared/models/company-licence.model';
 import { Company } from '@shared/models/company.model';
+import { Licence } from '@shared/models/licence.model';
+import { LicenceService } from '@shared/services/licence.service';
 
 
 @Component({
@@ -17,16 +19,19 @@ export class CompanyLicencesCreationDialogComponent {
   form: FormGroup;
   Industry = Industry;
   companies: Company[] = [];
+  licences: Licence[] = [];
 
 
   constructor(
     private readonly companyService: CompanyService,
+    private readonly licenceService: LicenceService,
     private readonly companyLicenceService: CompanyLicenceService,
     public dialogRef: MatDialogRef<CompanyLicencesCreationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CompanyLicence
   ) {
 
     this.companyService.getAll().subscribe(companies => this.companies = companies);
+    this.licenceService.getAll().subscribe(licences => this.licences = licences);
 
     this.form = this.createForm();
     if (this.data) {
@@ -34,7 +39,9 @@ export class CompanyLicencesCreationDialogComponent {
         company: {
           id: this.data.company.id
         },
-        licenceName: this.data.licenceName,
+        licence: {
+          id: this.data.licence.id
+        },        
         expiryDate: this.data.expiryDate,
 
       });
@@ -48,7 +55,9 @@ export class CompanyLicencesCreationDialogComponent {
       company: new FormGroup({
         id: new FormControl('', [Validators.required])
       }),
-      licenceName: new FormControl('', [Validators.maxLength(255)]),
+      licence: new FormGroup({
+        id: new FormControl('', [Validators.required])
+      }),
       expiryDate: new FormControl(),
     });
   }
