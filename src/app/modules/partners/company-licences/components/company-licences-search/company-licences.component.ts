@@ -24,6 +24,7 @@ import { CompanyLicenceTableColumns } from '../../constants/company-licences-tab
 import { CompanyLicencesCreationDialogComponent } from '../company-licences-creation-dialog/company-licences-creation-dialog.component';
 import { TableOperation } from '@shared/components/generic-table/config/table-operation';
 import { CompanyLicencesSendEmailDialogComponent } from '../company-licences-send-email-dialog/company-licences-send-email-dialog.component';
+import { CompanyLicencesUploadDialogComponent } from '../company-licences-upload-dialog/company-licences-upload-dialog.component';
 
 
 
@@ -184,6 +185,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     switch (operation) {
       case TableOperation.EDIT: this.onDetailClick(model); break;
       case TableOperation.SEND_EMAIL: this.onSendEmailClick(model); break;
+      case TableOperation.UPLOAD: this.onUploadDocumentClick(model); break;
     }
   }
 
@@ -199,16 +201,18 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     });
   }
 
+  onUploadDocumentClick(companyLicence: CompanyLicence) {
+
+    const dialogRef = this.dialog.open(CompanyLicencesUploadDialogComponent, {
+      data: companyLicence
+    });
+  }
+
 
   onSendEmailClick(companyLicence: CompanyLicence) {
 
     const dialogRef = this.dialog.open(CompanyLicencesSendEmailDialogComponent, {
       data: companyLicence
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.onSubmit();
-      this.showSuccessMessage();
     });
   }
 

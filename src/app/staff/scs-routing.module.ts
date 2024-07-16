@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('../modules/profile/profile.module').then((m) => m.ProfileModule)
+            loadChildren: () => import('../modules/partners/company-licences/company-licences.module').then((m) => m.CompanyLicencesModule),
       },
       {
         path: RoutesEnum.PROFILE,

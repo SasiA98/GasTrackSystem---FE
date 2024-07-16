@@ -91,6 +91,7 @@
     },
     "BUTTONS": {
         "ADD": "ADD",
+        "UPLOAD": "CARICA DOCUMENTO",
         "ADD_PROJECT": "Add Project",
         "DETAIL": "DETAIL",
         "DETAIL_PROJECT": "DETAIL PROJECT",
@@ -364,7 +365,7 @@
             "NEW": "Nuova Associazione",
             "MONTH": "Mese",
             "YEAR": "Anno",
-
+            "UPLOAD": "Carica Documento",
             "LICENCE": "Documento",
             "EMAIL_SENT": "Email Inviata Mese Prima",
             "COMPANY_NAME": "Punto Vendita",

@@ -1,0 +1,17 @@
+<mat-card-header>
+  <mat-card-title>{{ 'COMPANY_LICENCES.FIELDS.UPLOAD' | translate }}</mat-card-title>
+</mat-card-header>
+<mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" style="margin-top: 5px;">
+      <input #fileInput hidden type="file" (change)="fileInputChange($event)" accept=".pdf,.docx,.xlsx,.pptx" />
+      <button matTooltip="Import file" matTooltipPosition="below" mat-flat-button color="primary" (click)="fileInput.click()" class="iconButton">
+        <mat-icon>cloud_upload</mat-icon>
+      </button>
+  
+      <button [disabled]="!form.get('file')?.value" type="submit" mat-flat-button color="primary" class="inline">
+          {{ 'BUTTONS.SAVE' | translate }}
+      </button>   
+    </div>   
+  </form>
+</mat-dialog-content>

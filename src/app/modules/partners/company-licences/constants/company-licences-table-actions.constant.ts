@@ -12,6 +12,10 @@ export const CompanyLicenceTableAction : TableAction[] = [
     title: 'BUTTONS.DOWNLOAD'
   },
   {
+    operation: TableOperation.UPLOAD,
+    title: 'BUTTONS.UPLOAD'
+  },
+  {
     operation: TableOperation.SEND_EMAIL,
     title: 'BUTTONS.SEND_EMAIL'
   }
