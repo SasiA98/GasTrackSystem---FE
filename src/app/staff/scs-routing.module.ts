@@ -15,7 +15,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-            loadChildren: () => import('../modules/partners/company-licences/company-licences.module').then((m) => m.CompanyLicencesModule),
+        loadChildren: () => import('../modules/partners/company-licences/company-licences.module').then((m) => m.CompanyLicencesModule),
+        data: {
+          title: 'COMPANY_LICENCES.SEARCH.TITLE',
+          breadcrumb: [RoutesEnum.LISTS]
+        } as BreadcrumbData
       },
       {
         path: RoutesEnum.PROFILE,

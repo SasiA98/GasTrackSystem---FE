@@ -66,7 +66,7 @@ export class LicenceFormComponent extends FormBasePageComponent<Licence> {
   protected createForm(): FormGroup {
     return new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
-      note: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+      note: new FormControl('', [Validators.maxLength(255)]),
     });
   }
 

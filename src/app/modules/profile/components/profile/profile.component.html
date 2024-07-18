@@ -19,10 +19,11 @@
         <mat-card-title>
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <h2 class="mb-0">{{'PROFILE.TITLE' | translate}}</h2>
-                <div fxLayout="row" fxLayoutAlign="end center">
+<!--                <div fxLayout="row" fxLayoutAlign="end center">
                     <button *ngIf="!editEnabled" mat-button color="primary" (click)="enableEditing()">{{'PROFILE.BUTTONS.EDIT' | translate}}</button>
                 </div>
-            </div>
+              -->
+              </div>
         </mat-card-title>
         <ng-container [ngTemplateOutlet]="editEnabled ? editForm : details"></ng-container>
     </mat-card>

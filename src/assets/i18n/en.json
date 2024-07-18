@@ -1,5 +1,5 @@
 {
-    "APP_TITLE": "Resource Allocation Tool",
+    "APP_TITLE": "",
     "MENU": {
         "LOGOUT": "Logout",
         "PROFILE": "Profile",
@@ -35,9 +35,9 @@
         }
     },
     "AUTH": {
-        "PAGE_TITLE": "Teoresi Delivery RAT",
+        "PAGE_TITLE": "",
         "TITLE": "WELCOME BACK!",
-        "SUBTITLE": "Resource Allocation Tool",
+        "SUBTITLE": "",
         "FORM": {
             "USERNAME": "Username",
             "PASSWORD": "Password",
@@ -387,6 +387,7 @@
         },
         "FIELDS": {
             "NAME": "NOME",
+            "NOTE": "NOTE",
             "EMAIL": "EMAIL"
         },
         "FORM": {
@@ -647,7 +648,7 @@
                 "COLUMNS": {
                     "INDUSTRY": "Industry/Sector",
                     "CATEGORY": "Category/Type",
-                    "ACTION": "Action"
+                    "ACTION": "Azioni"
                 }
             }
         },
