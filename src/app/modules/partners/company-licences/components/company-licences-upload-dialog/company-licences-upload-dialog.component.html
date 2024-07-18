@@ -4,7 +4,7 @@
 <mat-dialog-content>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" style="margin-top: 5px;">
-      <input #fileInput hidden type="file" (change)="fileInputChange($event)" accept=".pdf,.docx,.xlsx,.pptx" />
+      <input #fileInput hidden type="file" (change)="fileInputChange($event)"/>
       <button matTooltip="Import file" matTooltipPosition="below" mat-flat-button color="primary" (click)="fileInput.click()" class="iconButton">
         <mat-icon>cloud_upload</mat-icon>
       </button>

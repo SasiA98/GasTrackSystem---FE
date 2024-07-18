@@ -371,6 +371,12 @@
             "COMPANY_NAME": "Punto Vendita",
             "LICENCE_NAME": "Documento",
             "EXPIRY_DATE": "Data Scadenza"
+        },
+        "MESSAGES": {
+            "SIZE_INFO": {
+                "TITLE": "Information",
+                "DESCRIPTION": "I file caricati non possono essere più grandi di 10 Mb"
+            }
         }
     },
     "COMPANIES": {

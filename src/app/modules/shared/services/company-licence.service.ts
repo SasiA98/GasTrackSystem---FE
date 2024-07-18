@@ -13,7 +13,7 @@ import { Observable, of, throwError } from 'rxjs';
 })
 export class CompanyLicenceService extends HttpBaseService<CompanyLicence> {
 
-  private uploadUrl = environment.endpoints.companyLicences;
+  private url = environment.endpoints.companyLicences;
 
 
   constructor(injector: Injector) {
@@ -48,7 +48,7 @@ export class CompanyLicenceService extends HttpBaseService<CompanyLicence> {
     const formData = new FormData();
     formData.append('file', file);
 
-    const url = `${this.uploadUrl}${companyLicenceId}/upload`;
+    const url = `${this.url}${companyLicenceId}/upload`;
 
 
     const req = new Request(url, {
@@ -69,4 +69,28 @@ export class CompanyLicenceService extends HttpBaseService<CompanyLicence> {
   }
 
 
+  getFile(companyLicenceId: number): Observable<Blob> {
+    const url = `${this.url}${companyLicenceId}/download`;
+
+    const req = new Request(url, {
+      method: 'GET',
+      headers: this.getAuthHeaders(),
+    }) as any; // Cast req to 'any' to avoid TypeScript error
+
+    return fromFetch(req).pipe(
+      switchMap(response => {
+        if (response.ok) {
+          return response.blob();
+        } else {
+          return throwError('Failed to download file');
+        }
+      }),
+      catchError(error => {
+        console.error('Error downloading file:', error);
+        return throwError('Error downloading file');
+      })
+    );
+  }
+
+  
 }

@@ -63,12 +63,27 @@ export class CompanyLicencesUploadDialogComponent {
   onSubmit(): void {
     if (this.form.valid) {
       const fileControl = this.form.get('file');
+      const maxSizeInMB = 50;
+      const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+        
       const companyLicenceId = this.companyLicence.id;
       if (fileControl && companyLicenceId) {
         const file = fileControl.value as File;
-        this.uploadFile(file, companyLicenceId);
+        
+        console.log(file.size);
+        console.log(maxSizeInBytes);
+        if(file.size > maxSizeInBytes){
+          this.showFileSizeMessage();
+        } else 
+          this.uploadFile(file, companyLicenceId);
       }
     }
+  }
+
+  private showFileSizeMessage(): void {
+    const title = this.translateService.instant('COMPANY_LICENCES.MESSAGES.SIZE_INFO.TITLE');
+    const message = this.translateService.instant('COMPANY_LICENCES.MESSAGES.SIZE_INFO.DESCRIPTION');
+    this.toastrService.info(message, title);
   }
 
   closeDialog(): void {
@@ -80,6 +95,7 @@ export class CompanyLicencesUploadDialogComponent {
     const message = this.translateService.instant('MESSAGES.SUCCESS.DESCRIPTION');
     this.toastrService.success(message, title);
   }
+
 
   uploadFile(file: File, companyLicenceId: number) {
     this.resetUpload(); // Reset before new upload

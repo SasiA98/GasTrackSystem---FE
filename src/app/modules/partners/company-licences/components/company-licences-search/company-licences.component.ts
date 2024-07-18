@@ -186,6 +186,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
       case TableOperation.EDIT: this.onDetailClick(model); break;
       case TableOperation.SEND_EMAIL: this.onSendEmailClick(model); break;
       case TableOperation.UPLOAD: this.onUploadDocumentClick(model); break;
+      case TableOperation.DOWNLOAD: this.onDownloadDocumentsClick(model); break;
     }
   }
 
@@ -206,6 +207,40 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     const dialogRef = this.dialog.open(CompanyLicencesUploadDialogComponent, {
       data: companyLicence
     });
+  }
+
+
+  onDownloadDocumentsClick(companyLicence: CompanyLicence) {
+
+    if(companyLicence.id == undefined)
+      return;
+
+    this.companyLicenceService.getFile(companyLicence.id).subscribe(
+      (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const filename = this.getFileNameFromUrl(companyLicence);
+    
+        var linkToFile = document.createElement('a');
+        linkToFile.download = filename;
+        linkToFile.href = url;
+        linkToFile.click();
+
+        this.showSuccessMessage();
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+    
+  }
+
+
+  getFileNameFromUrl(companyLicence: CompanyLicence): string {
+    const companyName = companyLicence.company.name.trim();
+    const licenceName = companyLicence.licence.name.trim();
+    const cleanCompanyName = companyName.replace(/[^a-zA-Z0-9]/g, '');
+    const cleanLicenceName = licenceName.replace(/[^a-zA-Z0-9]/g, '');
+    return cleanCompanyName + "-" + cleanLicenceName + ".zip";
   }
 
 
