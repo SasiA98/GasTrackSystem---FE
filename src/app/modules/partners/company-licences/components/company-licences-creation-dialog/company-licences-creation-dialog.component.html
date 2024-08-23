@@ -5,27 +5,32 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" style="margin-top: 5px;">
   
-        <mat-form-field fxFlex formGroupName="company" check-visibility control="company.id">
+        <mat-form-field fxFlex formGroupName="company">
           <mat-label>{{ 'COMPANY_LICENCES.FIELDS.COMPANY' | translate }}</mat-label>
-          <mat-select formControlName="id" required>
-            <mat-option *ngFor="let company of companies" [value]="company.id">
-              {{ company.name }}
+          <input matInput type="text" formControlName="id" [matAutocomplete]="auto" required>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFnAutocompleteCompanies.bind(this)">
+            <mat-option *ngFor="let company of companiesOb  | async"
+              [value]="company.id">
+              {{company.name}}
             </mat-option>
-          </mat-select>
+          </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field fxFlex formGroupName="licence" check-visibility control="licence.id">
+
+        <mat-form-field fxFlex formGroupName="licence">
           <mat-label>{{ 'COMPANY_LICENCES.FIELDS.LICENCE' | translate }}</mat-label>
-          <mat-select formControlName="id" required>
-            <mat-option *ngFor="let licence of licences" [value]="licence.id">
-              {{ licence.name }}
+          <input matInput type="text" formControlName="id" [matAutocomplete]="auto2" required>
+          <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFnAutocompleteLicences.bind(this)">
+            <mat-option *ngFor="let licence of licencesOb  | async"
+              [value]="licence.id">
+              {{licence.name}}
             </mat-option>
-          </mat-select>
+          </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field fxFlex>
           <mat-label>{{ 'COMPANY_LICENCES.FIELDS.EXPIRY_DATE' | translate }}</mat-label>
-          <input matInput [matDatepicker]="expiryDatePicker" formControlName="expiryDate" required/>
+          <input matInput [matDatepicker]="expiryDatePicker" formControlName="expiryDate"/>
           <mat-datepicker-toggle matSuffix [for]="expiryDatePicker" required></mat-datepicker-toggle>
           <mat-datepicker #expiryDatePicker></mat-datepicker>
         </mat-form-field>

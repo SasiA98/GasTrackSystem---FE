@@ -12,10 +12,60 @@
                     <mat-label>{{'COMPANIES.FIELDS.NAME' | translate}}</mat-label>
                     <input matInput formControlName="name" maxlength="50" required>
                 </mat-form-field>
-                <mat-form-field fxFlex check-visibility control="email">
-                    <mat-label>{{'COMPANIES.FIELDS.EMAIL' | translate}}</mat-label>
-                    <input matInput formControlName="email" maxlength="50" required>
+                <mat-form-field fxFlex check-visibility control="owner">
+                    <mat-label>{{'COMPANIES.FIELDS.OWNER' | translate}}</mat-label>
+                    <input matInput formControlName="owner" maxlength="50" required>
                 </mat-form-field>
+                <mat-form-field fxFlex check-visibility control="code">
+                    <mat-label>{{'COMPANIES.FIELDS.CODE' | translate}}</mat-label>
+                    <input matInput formControlName="code" maxlength="50">
+                </mat-form-field>
+                </div>
+                <div class="row" fxLayoutGap="5px">
+                <mat-form-field fxFlex check-visibility control="firstEmail">
+                    <mat-label>{{'COMPANIES.FIELDS.FIRST_EMAIL' | translate}}</mat-label>
+                    <input matInput formControlName="firstEmail" maxlength="50" required>
+                </mat-form-field>
+
+                <mat-form-field fxFlex check-visibility control="secondEmail">
+                    <mat-label>{{'COMPANIES.FIELDS.SECOND_EMAIL' | translate}}</mat-label>
+                    <input matInput formControlName="secondEmail" maxlength="50">
+                </mat-form-field>
+
+                <mat-form-field fxFlex check-visibility control="thirdEmail">
+                    <mat-label>{{'COMPANIES.FIELDS.THIRD_EMAIL' | translate}}</mat-label>
+                    <input matInput formControlName="thirdEmail" maxlength="50">
+                </mat-form-field>
+
+                
+                
+                <mat-form-field fxFlex check-visibility control="phone">
+                    <mat-label>{{'COMPANIES.FIELDS.PHONE' | translate}}</mat-label>
+                    <input matInput formControlName="phone" maxlength="14">
+                </mat-form-field>
+
+                </div>
+                <div class="row" fxLayoutGap="5px">
+                <mat-form-field fxFlex check-visibility control="address">
+                    <mat-label>{{'COMPANIES.FIELDS.ADDRESS' | translate}}</mat-label>
+                    <input matInput formControlName="address" maxlength="50">
+                </mat-form-field>
+
+                <mat-form-field fxFlex check-visibility control="provicia">
+                    <mat-label>{{'COMPANIES.FIELDS.PROVINCIA' | translate}}</mat-label>
+                    <input matInput formControlName="provincia" maxlength="50">
+                </mat-form-field>
+
+                <mat-form-field fxFlex check-visibility control="citta">
+                    <mat-label>{{'COMPANIES.FIELDS.CITTA' | translate}}</mat-label>
+                    <input matInput formControlName="citta" maxlength="50">
+                </mat-form-field>
+
+                <mat-form-field fxFlex check-visibility control="regione">
+                    <mat-label>{{'COMPANIES.FIELDS.REGIONE' | translate}}</mat-label>
+                    <input matInput formControlName="regione" maxlength="50">
+                </mat-form-field>
+
             </div>
 
             <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-5">
@@ -28,3 +78,15 @@
     </mat-card-content>
 </mat-card>
 
+
+<mat-card *ngIf="!isInsert() && companyLicences && companyLicences.length > 0">
+    <mat-card-header>
+      <mat-card-title>{{ 'COMPANY_LICENCES.FORM.RELATED_LICENCES' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'LICENCES.SEARCH.TITLE' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+        <mat-card-content fxLayout="column">
+          <app-generic-table [columns]="columnsCompanyLicences" [dataSource]="companyLicences" [showCheckbox]="false"
+          [tableAction]="actions" (onActionClick)="onActionClick($event.model, $event.operation)">
+          </app-generic-table>
+        </mat-card-content>
+  </mat-card>

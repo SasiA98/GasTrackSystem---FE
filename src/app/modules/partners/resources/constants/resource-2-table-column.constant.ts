@@ -12,7 +12,7 @@ export const Resource2TableColumns: Column[] = [
     attributeName: 'surname'
   },
   {
-    title: 'Seniority Teoresi',
+    title: 'Seniority Client',
     attributeName: 'seniority',
   },
   {

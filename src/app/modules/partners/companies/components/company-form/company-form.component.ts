@@ -16,13 +16,26 @@ import { RolePermissionService } from '@shared/services/role-permission.service'
 import { ROLE_VISIBILITY } from '@shared/constants/role-visibility.constants';
 import { Company } from '@shared/models/company.model';
 import { CompanyService } from '@shared/services/company.service';
+import { CompanyLicence } from '@shared/models/company-licence.model';
+import { CompanyLicencesTableColumns } from '../../constants/company-licences-table-columns.constant';
+import { CompanyLicencesUploadDialogComponent } from '../../../company-licences/components/company-licences-upload-dialog/company-licences-upload-dialog.component';
+import { CompanyLicencesCreationDialogComponent } from '../../../company-licences/components/company-licences-creation-dialog/company-licences-creation-dialog.component';
+import { TableOperation } from '@shared/components/generic-table/config/table-operation';
+import { CompanyLicenceService } from '@shared/services/company-licence.service';
+import { CompanyLicencesSendEmailDialogComponent } from '../../../company-licences/components/company-licences-send-email-dialog/company-licences-send-email-dialog.component';
+import { CompanyLicenceTableAction } from '../../constants/company-licences-table-actions.constant';
 
 
-export function emailValidator(): ValidatorFn {
+export function emailValidator(required: boolean): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Regex per validare l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Regex to validate email
     const valid = emailRegex.test(control.value);
-    return valid ? null : { invalidEmail: { value: control.value } };
+
+    if (required) {
+      return valid ? null : { invalidEmail: { value: control.value } };
+    } else {
+      return control.value ? (valid ? null : { invalidEmail: { value: control.value } }) : null;
+    }
   };
 }
 
@@ -40,12 +53,16 @@ export class CompanyFormComponent extends FormBasePageComponent<Company> {
   resources: Resource[] = [];
   companyName: string | number = '';
   ROLE_VISIBILITY = ROLE_VISIBILITY;
+  companyLicences?: CompanyLicence[] = [];
+  columnsCompanyLicences= CompanyLicencesTableColumns;
+  actions = CompanyLicenceTableAction;
 
   constructor(
     injector: Injector,
     private readonly router: Router,
     private readonly toastrService: ToastrService,
     public readonly roleService: RolePermissionService,
+    private readonly companyLicenceService: CompanyLicenceService,
     private readonly companyService: CompanyService,
     private readonly translateService: TranslateService,
     public readonly dialog: MatDialog
@@ -57,7 +74,15 @@ export class CompanyFormComponent extends FormBasePageComponent<Company> {
     super.ngOnInit();
     if (!this.isInsert()) {
       this.setCompanyNameInTheHTMLTitle();
+      this.setCompanyLicences();
     }
+  }
+
+
+  private setCompanyLicences(){
+    this.companyService.getCompanyLicenceById(String(this.idModel)).subscribe((companyLicences: CompanyLicence []) => {
+      this.companyLicences = companyLicences;
+    });
   }
 
   private setCompanyNameInTheHTMLTitle(){
@@ -68,6 +93,7 @@ export class CompanyFormComponent extends FormBasePageComponent<Company> {
     }
   }
 
+
   protected submitComplete(response: Company): void {
     this.showSuccessMessage();
     this.router.navigate(['./'], { relativeTo: this.activatedRoute.parent });
@@ -77,7 +103,16 @@ export class CompanyFormComponent extends FormBasePageComponent<Company> {
   protected createForm(): FormGroup {
     return new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
-      email: new FormControl('', [Validators.required, Validators.maxLength(255), emailValidator(), Validators.minLength(8)]),
+      firstEmail: new FormControl('', [Validators.required, Validators.maxLength(255), emailValidator(true), Validators.minLength(8)]),
+      secondEmail: new FormControl('', [Validators.maxLength(255), emailValidator(false), Validators.minLength(8)]),
+      thirdEmail: new FormControl('', [Validators.maxLength(255), emailValidator(false), Validators.minLength(8)]),
+      address: new FormControl('', [Validators.maxLength(255)]),
+      regione: new FormControl('', [Validators.maxLength(255)]),
+      provincia: new FormControl('', [Validators.maxLength(255)]),
+      citta: new FormControl('', [Validators.maxLength(255)]),
+      code: new FormControl('', [Validators.maxLength(20)]),
+      phone: new FormControl('', [Validators.maxLength(14)]),
+      owner: new FormControl('', [Validators.maxLength(255)])
     });
   }
 
@@ -113,16 +148,79 @@ export class CompanyFormComponent extends FormBasePageComponent<Company> {
     } else this.goToSetting();
   }
 
-  onDetailClick(resource: Resource) {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        from_company: 'company',
-        company_id : this.idModel
-      }
-    };
-    this.router.navigate(['/management', 'resources', resource.id], navigationExtras);
+  onActionClick(model: any, operation: number) {
+    
+    console.log(operation);
+    switch (operation) {
+      case TableOperation.EDIT: this.onDetailClick(model); break;
+      case TableOperation.SEND_EMAIL: this.onSendEmailClick(model); break;
+      case TableOperation.UPLOAD: this.onUploadDocumentClick(model); break;
+      case TableOperation.DOWNLOAD: this.onDownloadDocumentsClick(model); break;
+    }
   }
 
+  onDetailClick(companyLicence: CompanyLicence) {
+
+    const dialogRef = this.dialog.open(CompanyLicencesCreationDialogComponent, {
+      data: companyLicence
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.onSubmit();
+      this.showSuccessMessage();
+    });
+  }
+
+  onUploadDocumentClick(companyLicence: CompanyLicence) {
+
+    const dialogRef = this.dialog.open(CompanyLicencesUploadDialogComponent, {
+      data: companyLicence
+    });
+  }
+
+
+  onDownloadDocumentsClick(companyLicence: CompanyLicence) {
+
+    if(companyLicence.id == undefined)
+      return;
+
+    this.companyLicenceService.getFile(companyLicence.id).subscribe(
+      (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const filename = this.getFileNameFromUrl(companyLicence);
+    
+        var linkToFile = document.createElement('a');
+        linkToFile.download = filename;
+        linkToFile.href = url;
+        linkToFile.click();
+
+        this.showSuccessMessage();
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+    
+  }
+
+
+  getFileNameFromUrl(companyLicence: CompanyLicence): string {
+    const companyName = companyLicence.company.name.trim();
+    const licenceName = companyLicence.licence.name.trim();
+    const cleanCompanyName = companyName.replace(/[^a-zA-Z0-9]/g, '');
+    const cleanLicenceName = licenceName.replace(/[^a-zA-Z0-9]/g, '');
+    return cleanCompanyName + "-" + cleanLicenceName + ".zip";
+  }
+
+
+  onSendEmailClick(companyLicence: CompanyLicence) {
+
+    const dialogRef = this.dialog.open(CompanyLicencesSendEmailDialogComponent, {
+      data: companyLicence
+    });
+  }
+
+  
   goToSetting() {
     this.router.navigate(['./setting'], { relativeTo: this.activatedRoute.parent });
   }

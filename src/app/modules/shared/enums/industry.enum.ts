@@ -9,5 +9,5 @@ export enum Industry {
     HA = "Home Appliance",
     TC = "Telecommunication and Media",
     OT = "Others",
-    TEO = "Teoresi Staff Activities"
+    TEO = "Client Staff Activities"
 }

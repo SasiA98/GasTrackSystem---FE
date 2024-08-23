@@ -83,11 +83,11 @@
       <div class="mb-3" fxLayout="column" fxLayoutGap="10">
         <div fxLayout="row" fxLayout="start center" fxlayoutGap="10">
           <div fxFlex fxLayout="column" *ngIf="model?.resource?.name">
-            <h3 class="mb-0">Name</h3>
+            <h3 class="mb-0">Nome</h3>
             <span class="text-muted fw-lighter">{{model?.resource?.name}}</span>
           </div>
           <div fxFlex fxLayout="column" *ngIf="model?.resource?.surname">
-            <h3 class="mb-0">Surname</h3>
+            <h3 class="mb-0">Cognome</h3>
             <span class="text-muted fw-lighter">{{model?.resource?.surname}}</span>
           </div>
         </div>
@@ -97,7 +97,7 @@
             <span class="text-muted fw-lighter">{{model?.resource?.employee_id}}</span>
           </div>
           <div fxFlex fxLayout="column" *ngIf="model?.resource?.email">
-            <h3 class="mb-0">E-mail</h3>
+            <h3 class="mb-0">Email</h3>
             <span class="text-muted fw-lighter">{{model?.resource?.email}}</span>
           </div>
         </div>
@@ -107,7 +107,7 @@
             <span class="text-muted fw-lighter">{{model?.resource?.unit?.trigram}}</span>
           </div>
           <div fxFlex fxLayout="column" *ngIf="model?.resource?.roles">
-            <h3 class="mb-0">Roles</h3>
+            <h3 class="mb-0">Ruolo</h3>
             <span class="text-muted fw-lighter">{{model?.resource?.roles?.join(' - ')}}</span>
           </div>
         </div>

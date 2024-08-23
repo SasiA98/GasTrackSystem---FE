@@ -1,6 +1,6 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-// Validatore per verificare se l'email termina con "@teoresigroup.com"
+// Validatore per verificare se l'email termina con "@clientgroup.com"
 export function emailTEOValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const email = control.value;
@@ -10,10 +10,10 @@ export function emailTEOValidator(): ValidatorFn {
       return null;
     }
 
-    // Verificare se l'email termina con "@teoresigroup.com"
-    const isValid = email.toLowerCase().endsWith('@teoresigroup.com');
+    // Verificare se l'email termina con "@clientgroup.com"
+    const isValid = email.toLowerCase().endsWith('@clientgroup.com');
 
-    // Restituire un errore se l'email non termina con "@teoresigroup.com"
-    return isValid ? null : { 'invalidTeoresiEmail': true };
+    // Restituire un errore se l'email non termina con "@client.com"
+    return isValid ? null : { 'invalidClientEmail': true };
   };
 }

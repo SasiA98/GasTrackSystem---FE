@@ -1,364 +1,91 @@
 {
     "APP_TITLE": "",
     "MENU": {
-        "LOGOUT": "Logout",
-        "PROFILE": "Profile",
+        "LOGOUT": "Esci",
+        "PROFILE": "Profilo",
         "SIDENAV": {
-            "MANAGEMENT": "Management",
-            "USER_MANAGEMENT": "Users",
-            "UNIT_MANAGEMENT": "Units ",
             "COMPANIES": "Punti Vendita",
             "COMPANY_LICENCES": "Contratti",
             "LICENCES": "Documenti",
             "LISTS": "Elenco",
             "SCADENZIARIO": "Scadenziario",
             "ELENCO_SCADENZIARIO": "Elenco Scadenziario",
-            "PROJECT_MANAGEMENT": "Project Management",
-            "RESOURCE_TIMESHEET": "Resource Timesheet",
-            "UNIT_TIMESHEET": "Unit Timesheet",
-            "TIMESHEET": "Timesheet",
-            "ANALYSIS": "Analysis",
-            "VULNERABILITY_STATUS": "Vulnerability status",
-            "USER_STATUS": "User status",
-            "SETTINGS": "Settings",
-            "ROLES_PERMISSION": "Roles Permission",
-            "GANTT": "Gantt",
-            "RESOURCE_GANT_OVERVIEW": "Resource Load Overview",
-            "SKILL_OVERVIEW": "Skill Overview",
-            "SKILLS": "Skills",
-            "IMPORT_OVERVIEW": "Import Overview",
-            "IMPORT": "Timesheets",
-            "IMPORT_RESOURCES": "Resources",
-            "PROJECTS_GANT_OVERVIEW": "Projects Load Overview",
+            "SETTINGS": "Impostazioni",
             "ELENCO_LICENZE": "elenco documenti",
             "LICENZE": "Documenti"
         }
     },
     "AUTH": {
         "PAGE_TITLE": "",
-        "TITLE": "WELCOME BACK!",
+        "TITLE": "BENTORNATO!",
         "SUBTITLE": "",
         "FORM": {
             "USERNAME": "Username",
             "PASSWORD": "Password",
-            "TOKEN_NUMBER": "Token number",
             "ERRORS": {
-                "REQUIRED": "Input is mandatory",
-                "EMAIL": "Email is not valid"
+                "REQUIRED": "il campo è obbligatorio",
+                "EMAIL": "L'email non è valida"
             }
         },
-        "BUTTON": "LOGIN"
+        "BUTTON": "Accedi"
     },
     "SEARCH": {
-        "TITLE": "Search",
+        "TITLE": "Cerca",
         "BUTTONS": {
-            "SUBMIT": "Search",
-            "RESET": "Reset"
+            "SUBMIT": "Carca",
+            "RESET": "Resetta"
         },
-        "EMPTY_RESULT": "The are no results"
+        "EMPTY_RESULT": "Non ci sono risultati"
     },
     "FILTER": {
-        "TITLE": "Filters"
+        "TITLE": "Filtri"
     },
     "MESSAGES": {
         "SUCCESS": {
-            "TITLE": "SUCCESS",
-            "DESCRIPTION": "Operation successfully executed"
-        },
-        "REAL_COMMITMENT": {
-            "TITLE": "SUCCESS",
-            "DESCRIPTION": "REAL COMMITMENT: new real commitment has been added"
-        },
-        "SALE_COMMITMENT": {
-            "TITLE": "SUCCESS",
-            "DESCRIPTION": "SALE COMMITMENT: new sale commitment has been added"
+            "TITLE": "Successo",
+            "DESCRIPTION": "L'operazione è avvenuta con successo"
         },
         "WARNING": {
-            "TITLE": "WARNING"
-        },
-        "WARNING_USER": {
-            "TITLE": "WARNING",
-            "DESCRIPTION":"Please check the email you've entered, if you find any errors, do not proceed and go to the Resources section to edit the email!"
+            "TITLE": "Attenzione"
         },
         "INFORMATION": {
-            "TITLE": "INFORMATION"
+            "TITLE": "Info"
         }
     },
-    "TABS": {
-        "SALES_TAB": "Sales Commitment",
-        "REAL_TAB": "Real Commitment",
-        "MONTH_TAB": "Month Tab"
-    },
     "BUTTONS": {
-        "ADD": "ADD",
-        "UPLOAD": "CARICA DOCUMENTO",
+        "ADD": "Aggiungi",
+        "UPLOAD": "Carica documento",
         "ADD_PROJECT": "Add Project",
-        "DETAIL": "DETAIL",
-        "DETAIL_PROJECT": "DETAIL PROJECT",
-        "DOWNLOAD": "SCARICA DOCUMENTI",
-        "SEND_EMAIL": "INVIA EMAIL",
-        "NEW_UNIT": "CREATE UNIT",
+        "DETAIL": "Dettagli",
+        "DOWNLOAD": "Scarica documenti",
+        "SEND_EMAIL": "Invia email",
         "NEW_LICENCE": "Crea",
         "NEW_COMPANY_LICENCE": "Crea",
         "NEW_COMPANY": "Crea",
-        "NEW_USER": "CREATE USER",
-        "NEW_RESOURCE": "CREATE RESOURCE",
-        "NEW_PROJECT": "CREATE PROJECT",
-        "NEW_SKILL": "CREATE SKILL",
-        "NEW_SKILL_GROUP": "CREATE SKILL GROUP",
-        "BACK": "GO BACK",
-        "SAVE": "SAVE",
-        "SAVE_NOTE": "SAVE NOTE",
-        "DELETE": "DELETE",
-        "CONVERT": "CONVERT",
-        "EDIT": "MODIFICA",
-        "ADD_HOURS": "Add Hours",
-        "RESET": "RESET FILTERS",
-        "CANCEL": "CANCEL",
-        "EDIT_USER": "Edit User",
-        "CHANGE_STATUS": "Enable/Disable User Status",
-        "RESET_PASSWORD": "Reset Password",
-        "CONFIRM": "CONFIRM",
-        "SHOW_METRICS": "SHOW METRICS",
-        "NEW_OFFICIAL_TRIGRAM": "CREATE OFFICIAL TRIGRAM"
+        "BACK": "Indietro",
+        "SAVE": "Salva",
+        "DELETE": "Elimina",
+        "EDIT": "Modifica",
+        "CONFIRM": "Conferma"
     },
     "PAGINATOR": {
-        "FIRST_PAGE": "First page",
-        "PAGE_OF": "Page {{n}} of {{l}}",
-        "LAST_PAGE": "Last Page",
-        "NEXT_PAGE": "Next Page",
-        "PREV_PAGE": "Previous Page",
-        "ELEMENTS_FOR_PAGE": "Elements for page",
-        "PAGE": "Page"
+        "FIRST_PAGE": "Prima pagina",
+        "PAGE_OF": "Pagina {{n}} di {{l}}",
+        "LAST_PAGE": "Ultima pagina",
+        "NEXT_PAGE": "Pagina successiva",
+        "PREV_PAGE": "Pagina precedente",
+        "ELEMENTS_FOR_PAGE": "Elementi per pagina",
+        "PAGE": "Pagina"
     },
-    "SBOM_MANAGEMENT": {
-        "INSERT": {
-            "TITLE": "ADD SBOM"
-        }
-    },
-    "COMMON": {
-        "FIELDS": {
-            "UPDATED_ON": "Updated on",
-            "CREATED_ON": "Created on"
-        },
-        "ADVANCED_FILTERS": "Advanced Filters"
-    },
-    "USERS": {
-        "SEARCH": {
-            "TITLE": "Users",
-            "SUBTITLE": "Search for users",
-            "SEARCH_BAR_NAME": "Search User"
-        },
-        "FORM": {
-            "TITLE": "User",
-            "UPDATE_SUBTITLE": "Update user",
-            "NEW_SUBTITLE": "Add new user"
-        },
-        "FIELDS": {
-            "ID": "ID",
-            "NAME": "Name",
-            "SURNAME": "Surname",
-            "EMAIL": "Email",
-            "PASSWORD": "Password",
-            "ROLES": "Roles",
-            "STATUS": "Status"
-        },
-        "ROLES": {
-            "ADMIN": "ADMIN",
-            "PRODUCT_MANAGER": "PRODUCT MANAGER",
-            "PSIRT_MEMBER": "PSIRT MEMBER",
-            "USER": "USER"
-        }
-    },
-    "UNITS": {
-        "SEARCH": {
-            "TITLE": "Units",
-            "SUBTITLE": "Search for units"
-        },
-        "FORM": {
-            "TITLE": "Unit",
-            "UPDATE_SUBTITLE": "Update unit",
-            "NEW_SUBTITLE": "Add new unit"
-        },
-        "FIELDS": {
-            "TRIGRAM": "Trigram",
-            "TYPE": "Type",
-            "STATUS": "Status"
-        }
-    },
-
-    "RESOURCES": {
-        "SEARCH": {
-            "TITLE": "Resources",
-            "SUBTITLE": "Search for resources",
-            "SEARCH_BAR_NAME": "Full name"
-        },
-        "FORM": {
-            "TITLE": "Resource",
-            "UPDATE_SUBTITLE": "Update resource",
-            "NEW_SUBTITLE": "Add new resource",
-            "ASSOCIATED_RESOURCES": "Associated Resources",
-            "RELATED_PROJECTS": "Related Projects"
-        },
-        "FILTER": {
-            "TITLE": "Resources",
-            "UPDATE_SUBTITLE": "Set filters",
-            "NEW_SUBTITLE": "Set filters"
-        },
-        "HOURLY_COST": {
-            "TITLE": "Hourly Costs",
-            "SUBTITLE": "History"
-        },
-        "FIELDS": {
-            "NAME": "Name",
-            "SURNAME": "Surname",
-            "BIRTHDATE": "Birth Date",
-            "HIRINGDATE": "Hiring Date",
-            "UNIT": "Unit",
-            "UNIT_TYPE": "Type of Unit",
-            "HOURLYCOST": "Hourly Cost",
-            "WORKING_TIME": "Working Time",
-            "WORKING_TIME_SD": "Working Time SD.",
-            "ROLES": "Roles",
-            "SITE": "Site",
-            "LOCATION": "Location",
-            "EMPLOYEE_ID": "Employee ID",
-            "ADD_SKILLS": "Add Skills",
-            "HOURLYCOSTSTARTINGDATE": "Hourly Cost SD.",
-            "RAL": "RAL",
-            "RALSTARTDATE": "RAL Start Date",
-            "APPLICATION_ROLE": "Application Role",
-            "DAILY_ALLOWANCE": "Daily Allowance",
-            "DAILY_ALLOWANCE_START_DATE": "Daily Allowance SD.",
-            "CCNL_LEVEL": "CCNL Level",
-            "CCNL_LEVEL_START_DATE": "CCNL Level SD.",
-            "LEAVE_DATE": "Leave Date",
-            "TRIGRAM": "Trigram",
-            "NOTE": "Note",
-            "STATUS": "Status",
-            "CURRENT_STATUS": "Resource Status",
-            "SENIORITY": "Seniority",
-            "AGE": "Age",
-            "SALARY_DETAILS": "Salary Details",
-            "HOURLY_COST_HISTORY": "Hourly Cost History",
-            "SKILLS_HISTORY": "SKILLS"
-        },
-        "MESSAGES": {
-            "ROLE_INFO": {
-                "TITLE": "Information",
-                "DESCRIPTION": "A role cannot be removed from a resource if the resource holds that role in any ongoing project"
-            },
-            "LEAVE_DATE_INFO": {
-                "TITLE": "Information",
-                "DESCRIPTION": "The resource allocations on projects may have been changed according to the leave date"
-            }
-        }
-    },
-    "PROJECTS": {
-        "SEARCH": {
-            "TITLE": "Projects",
-            "SUBTITLE": "Search for project",
-            "SEARCH_BAR": "Search Project Title"
-        },
-        "FORM": {
-            "TITLE": "Project",
-            "UPDATE_SUBTITLE": "Update project",
-            "NEW_SUBTITLE": "Add new project"
-        },
-        "FIELDS": {
-            "TITLE": "Title",
-            "INDUSTRY": "Industry",
-            "PRESALE": "PRE-SALE",
-            "PSE": "PSE",
-            "DUM": "DUM",
-            "BM": "BM",
-            "PM": "PM",
-            "STATUS": "Status",
-            "TYPE": "Project Type",
-            "CRM": "CRM Code",
-            "PROJECT_ID": "Project ID",
-            "NODE_ORDER": "Node Order",
-            "I/C": "I/C",
-            "SCHEDULED_START_DATE": "Pre-Sale Scheduled Start Date",
-            "SCHEDULED_END_DATE": "Pre-Sale Scheduled End Date",
-            "ESTIMATED_END_DATE": "Estimated End Date",
-            "KOM_DATE": "KoM Date",
-            "EFFECTIVE_END_DATE": "Effective End Date",
-            "ESTIMATED_COST": "Estimated Cost",
-            "PS_HR_COST":"Pre-Sale Estimated HR Cost",
-            "C_HR_COST":"Current Estimated HR Cost",
-            "PS_FIXED_COST":"Pre-Sale Fixed Cost",
-            "C_FIXED_COST":"Current Fixed Cost",
-            "PS_ESTIMATED_COST":"Pre-Sale Estimated Cost",
-            "C_ESTIMATED_COST":"Current Estimated Cost",
-            "ACTUAL_COST": "Actual Cost",
-            "NOTE": "Note"
-        }
-    },
-    "ALLOCATION": {
-        "SEARCH": {
-            "TITLE": "Resource Allocation",
-            "SUBTITLE": "Add a New Resource"
-        },
-        "FORM": {},
-        "FIELDS": {
-            "PROJECT": "Project Title",
-            "PROJECT_ROLE": "Role in Project",
-            "RESOURCE": "Resource",
-            "PERCENTAGE": "Percentage",
-            "HOURS": "Hours",
-            "REAL_COMMITMENT": "Real Commitment",
-            "ROLE": "Role",
-            "START_DATE": "Start Date",
-            "END_DATE": "End Date"
-        },
-        "ADD_END_DATE_DIALOG": {
-            "TITLE": "Allocation"
-        }
-    },
-    "SKILLS": {
-        "SEARCH": {
-            "TITLE": "Skill List",
-            "SUBTITLE": "Manage Skills",
-            "SEARCH_BAR": "Search Skill Name"
-        },
-        "FORM": {
-            "TITLE": "Skill List",
-            "SUBTITLE": "Add a New Skill"
-        },
-        "FIELDS": {
-            "SKILL_GROUP": "Skill Group",
-            "NAME": "Skill Name",
-            "RATING": "Rating"
-        },
-        "ADD_END_DATE_DIALOG": {
-            "TITLE": "Allocation"
-        }
-    },
-    "OFFICIAL_TRIGRAMS": {
-        "SEARCH": {
-            "TITLE": "[Delivery] Operations Trigrams",
-            "SUBTITLE": "This page collects all the trigrams of Operations Managers, all legal entities",
-            "SEARCH_BAR": "Search Operation Trigram"
-        },
-        "FORM": {
-            "TITLE": "Skill List",
-            "SUBTITLE": "Add a New Skill"
-        },
-        "FIELDS": {
-            "LEGAL_ENTITY": "Legal Entity",
-            "NAME": "Name",
-            "ROLE": "Role",
-            "INDUSTRY":"Industry",
-            "TRIGRAM":"Trigram",
-            "REPORTS_TO":"Reports To"
-        }
-    },
+   
     "COMPANY_LICENCES": {
         "SEARCH": {
             "TITLE": "Documenti in Scandenza",
             "SUBTITLE": "Questa pagina colleziona tutti i documenti associate ai vari punti vendita",
             "SEARCH_BAR": "Cerca"
+        },
+        "FORM": {
+            "RELATED_LICENCES": "Licenze associate"
         },
         "FIELDS": {
             "COMPANY": "Punto Vendita",
@@ -374,7 +101,7 @@
         },
         "MESSAGES": {
             "SIZE_INFO": {
-                "TITLE": "Information",
+                "TITLE": "Info",
                 "DESCRIPTION": "I file caricati non possono essere più grandi di 10 Mb"
             }
         }
@@ -388,7 +115,16 @@
         "FIELDS": {
             "NAME": "NOME",
             "NOTE": "NOTE",
-            "EMAIL": "EMAIL"
+            "CODE": "COD. P.V.",
+            "ADDRESS": "INDIRIZZO",
+            "REGIONE": "REGIONE",
+            "PROVINCIA": "PROVINCIA",
+            "CITTA": "CITTA'",
+            "FIRST_EMAIL": "EMAIL PRIMARIA",
+            "SECOND_EMAIL": "EMAIL ADDIZIONALE 1",
+            "THIRD_EMAIL": "EMAIL ADDIZIONALE 2",
+            "PHONE": "TELEFONO",
+            "OWNER": "PROPRIETARIO"
         },
         "FORM": {
             "TITLE": "Punto vendita",
@@ -412,300 +148,10 @@
             "NEW_SUBTITLE": "Inserisci documento"
         }
     },
-    "TIMESHEET": {
-        "SEARCH": {},
-        "FORM": {
-            "TITLE": "Resource Timesheet",
-            "SUBTITLE": "Manage Resource Timesheet"
-        },
-        "FIELDS": {
-            "RESOURCE": "Resource",
-            "PROJECT": "Project Name",
-            "HOURS": "Hours",
-            "VERIFIED_HOURS": "Verified Hours",
-            "PROPOSED_HOURS": "Proposed Hours",
-            "ALLOCATION_HOURS": "Allocation Hours",
-            "COST": "Cost (€ / Month)",
-            "ESTIMATED_COST": "PRJ HR Est. Cost",
-            "ACTUAL_COST": "PRJ HR Act. Cost",
-            "NOTE": "Note"
-        }
-    },
-    "UNIT_TIMESHEET": {
-        "SEARCH": {},
-        "FORM": {
-            "TITLE": "Unit Timesheet",
-            "SUBTITLE": "Manage Unit Timesheet"
-        },
-        "FIELDS": {
-            "NAME": "Resource Name",
-            "SURNAME": "Resource Surname",
-            "REMAINING_HOURS": "Remaining Hours"
-        }
-    },
     "PROFILE": {
-        "TITLE": "User Details",
+        "TITLE": "Utente",
         "BUTTONS": {
-            "EDIT": "Edit profile"
-        },
-        "CHANGE_PASSWORD": {
-            "TITLE": "Change password"
-        },
-        "FIELDS": {
-            "NEW_PASSWORD": "New password",
-            "CONFIRM_PASSWORD": "Confirm new password",
-            "CURRENT_PASSWORD": "Current password"
-        },
-        "PRODUCTS": "Products"
-    },
-    "PRODUCTS": {
-        "SEARCH": {
-            "TITLE": "Products",
-            "SUBTITLE": "Search for products"
-        },
-        "FORM": {
-            "TITLE": "Product",
-            "NEW_SUBTITLE": "Add new product",
-            "UPDATE_SUBTITLE": "Update product",
-            "MANUFACTURER_SUBFORM": {
-                "TITLE": "Manufacturer name"
-            },
-            "PHYSICAL_ADDRESS_SUBFORM": {
-                "TITLE": "Physical address"
-            },
-            "SBOM": {
-                "TITLE": "SBOM"
-            }
-        },
-        "FIELDS": {
-            "ID": "Id",
-            "NAME": "Name",
-            "SBOM": "SBOM Document",
-            "URL": "Url",
-            "PRODUCERS": "Unit producer",
-            "PRODUCT_MANAGER": "Product manager",
-            "UNIT": "Unit",
-            "INDUSTRY": "Industry/Sector",
-            "CATEGORY": "Category/Type",
-            "SUPPLY_CHAIN_STAGE": "Supply chain stage",
-            "MANUFACTURER_NAME": "Manufacturer name",
-            "MANUFACTURER_PRODUCT_DESIGNATION": "Manufacturer product designation",
-            "COUNTRY_CODE": "Country code",
-            "STREET": "Street",
-            "ZIP": "Zip",
-            "STATE_COUNTRY": "State country",
-            "MANUFACTURER_PRODUCT_FAMILY": "Manufacturer product family",
-            "SERIAL_NUMBER": "Serial number",
-            "BATCH_NUMBER": "Batch number",
-            "PRODUCT_COUNTRY_OF_ORIGIN": "Product country of origin",
-            "YEAR_OF_CONSTRUCTION": "Year of construction",
-            "VULNERABILITY_COUNT": "N. vulnerabilities",
-            "UTILIZERS": "Users"
-        },
-        "DIALOG": {
-            "TITLE": "INDUSTRIES AND CATEGORIES",
-            "SUBTITLE": "Manage Industries and Categories"
-        },
-        "MESSAGES": {
-            "WARNING": {
-                "TITLE": "User Notification",
-                "DESCRIPTION": "Will not send any notification without linked user."
-            }
-        }
-    },
-    "SBOM": {
-        "SEARCH": {
-            "TITLE": "SBOM",
-            "SUBTITLE": "Search for SBOM"
-        },
-        "FORM": {
-            "TITLE": "SBOM",
-            "NEW_SUBTITLE": "Add new SBOM",
-            "UPDATE_SUBTITLE": "Update SBOM",
-            "BUTTONS": {
-                "SHOW_NETWORK_DIAGRAM": "Show Network Diagram",
-                "IMPORT_SBOM": "Import SBOM (spdx, cycloneDX)",
-                "ADD_COMPONENT": "Add Component",
-                "SHOW_MORE": "Show more",
-                "SHOW_LESS": "Show less",
-                "SHOW_ALL": "Show all",
-                "HIDE_ALL": "Hide all",
-                "LINK_SBOM": "Link Sbom"
-            }
-        },
-        "FIELDS": {
-            "SPDX_VERSION": "SBOM Version",
-            "SPDX_ID": "SBOM Id",
-            "DOCUMENT_NAME": "Document name",
-            "DOCUMENT_NAMESPACE": "Document Namespace",
-            "CREATOR": "Creator",
-            "CREATOR_COMMENT": "Creator comment",
-            "PACKAGES_COUNT": "Packages count",
-            "CREATED": "Created",
-            "COMPONENT_N": "Component {{ n }}",
-            "PRIMARY_COMPONENT": "Primary component",
-            "PACKAGE_NAME": "Package name",
-            "PACKAGE_VERSION": "Package version",
-            "PACKAGE_SUPPLIER": "Package supplier",
-            "PACKAGE": "Package",
-            "FILE": "File",
-            "PACKAGE_RELATIONSHIP": "Relationship",
-            "PACKAGE_FILE_NAME": "Package filename",
-            "PACKAGE_CHECKSUM": "Package checksum",
-            "FILE_NAME": "File Name",
-            "FILE_CHECKSUM": "File Checksum",
-            "SPDXID": "Component ID",
-            "PARENT": "Parent Component ID",
-            "RELATIONSHIP": "Relationship",
-            "CONFIDENTIALITY": "Confidentiality Level",
-            "SHARED": "Shared",
-            "CONFIDENTIAL": "Confidential",
-            "SBOM_LINKED": " {{ n }} Link to Sbom"
-        },
-        "MESSAGES": {
-            "WARNING": {
-                "TITLE": "Show All Components",
-                "DESCRIPTION": "There are too components. Make be visible all ones to able Add Component Button."
-            }
-        }
-    },
-    "IMPORT": {
-        "SEARCH": {
-            "TITLE": "Import Overview",
-            "SUBTITLE": "Search for import"
-        },
-        "FORM": {
-            "TITLE": "Import Data",
-            "SUBTITLE": "Import Data from Excel"
-        }
-    },
-    "IMPORT_RESOURCES": {
-        "SEARCH": {
-            "TITLE": "Import Resource Overview",
-            "SUBTITLE": "Search for import"
-        },
-        "FORM": {
-            "TITLE": "Import Resource Data",
-            "SUBTITLE": "Import Resource Data from Excel"
-        }
-    },
-    "NOTIFICATION": {
-        "PANEL_TITLE": "Notifications",
-        "VULNERABILITY_FOUND": "New vulnerability found",
-        "VULNERABILITY_DETECTED": "Detected",
-        "VULNERABILITY_WITH_TITLE": "Vulnerability with title",
-        "VULNERABILITY_HAVE_BEEN_FOUND": "have been found on the product",
-        "NO_NOTIFICATION": "Nothing new here"
-    },
-    "SBOM_STATUS": {
-        "TITLE": "SBOM Status",
-        "SEARCH": {
-            "WITH_VULNERABILITY": "Filter products with Vulnerability",
-            "WITHOUT_SBOM": "Filter products without sbom"
-        }
-    },
-    "VULNERABILITY_STATUS": {
-        "TITLE": "Vulnerability Status",
-        "COMPONENTS": {
-            "TITLE": "Affected Software Components",
-            "PRODUCTS_AFFECTED_BY": "Products affected by '{{ vulnerabilityName }}' "
-        }
-    },
-    "USER_STATUS": {
-        "TITLE": "User status",
-        "PRODUCTS_OF": "{{ username }}'s products"
-    },
-    "SETTING": {
-        "ROLE_PERMISSION": {
-            "TITLE": "Role Permission",
-            "SUBTITLE": "Configure Role's Permission",
-            "FORM": {
-                "TITLE": "Role Permission",
-                "SUBTITLE": "Add new Role"
-            },
-            "LABEL_ROUTE": {
-                "users": "User Management",
-                "products": "Product Management",
-                "units": "Unit Management",
-                "sbom-management": "SBOM Management",
-                "vulnerabilities": "Vulnerability Data",
-                "sbom-status": "SBOM Status",
-                "user-status": "User Status",
-                "vulnerability-status": "Vulnerability Status",
-                "sectorcategory": "Sector Category"
-            },
-            "MESSAGES": {
-                "WARNING": {
-                    "TITLE": "Role's Permission",
-                    "DESCRIPTION": "Role's Permission Updated"
-                }
-            }
-        },
-        "PRODUCT-OPTIONS": {
-            "TITLE": "Product's Industries and Categories",
-            "SUBTITLE": "Manage Product's Industries and Categories",
-            "TABLE": {
-                "COLUMNS": {
-                    "INDUSTRY": "Industry/Sector",
-                    "CATEGORY": "Category/Type",
-                    "ACTION": "Azioni"
-                }
-            }
-        },
-        "CVSS_METRICS": {
-            "TITLE": "CVSS Metrics",
-            "SUBTITLE": "Manage CVSS Metrics",
-            "FIELDS": {
-                "BASE_SCORE": "Base Score Metrics",
-                "TEMPORAL_SCORE": "Temporal Score Metrics",
-                "ENVIRONMENTAL_SCORE": "Environmental Score Metrics"
-            }
-        }
-    },
-    "SETTING_PARAMETERS": {
-        "SUBTITLE": "Setting paramenters"
-    },
-    "PRODUCT-OPTIONS": {
-        "SEARCH": {
-            "TITLE": "Sector and Category",
-            "SUBTITLE": "Search for Sector and Category"
-        },
-        "FORM": {
-            "TITLE": "Sector and Category",
-            "NEW_SUBTITLE": "Add new Sector and Category",
-            "UPDATE_SUBTITLE": "Update Sector and Category",
-            "BUTTONS": {
-                "ADD_CWE": "Add CWE"
-            }
-        },
-        "FIELDS": {
-            "SECTOR": "Sector/Industry",
-            "CATEGORY": "Category/Type",
-            "CWE_ID": "CWE ID",
-            "CONFIDENTIALITY_REQUIREMENT": "Confidentiality Requirement",
-            "INTEGRITY_REQUIREMENT": "Integrity Requirement",
-            "AVAILABILITY_REQUIREMENT": "Availability Requirement",
-            "MODIFIED_CONFIDENTIALITY": "Modified Confidentiality",
-            "MODIFIED_INTEGRITY": "Modified Integrity",
-            "MODIFIED_AVAILABILITY": "Modified Availability",
-            "MODIFIED_ATTACK_VECTOR": "Modified Attack Vector",
-            "MODIFIED_ATTACK_COMPLEXITY": "Modified Attack Complexity",
-            "MODIFIED_PRIVILEGES_REQUIRED": "Modified Privileges Required",
-            "MODIFIED_USER_INTERACTION": "Modified User Interaction",
-            "MODIFIED_SCOPE": "Modified Scope",
-            "WEAKNESS": "Weakness {{ n }}"
-        }
-    },
-    "RESOURCE_LOAD_OVERVIEW": {
-        "FORM": {
-            "TITLE": "Resources load overview",
-            "SUBTITLE": "Overview"
-        }
-    },
-    "PROJECTS_GANT_OVERVIEW": {
-        "FORM": {
-            "TITLE": "Projects load overview",
-            "SUBTITLE": "Overview"
+            "EDIT": "Modifica profilo"
         }
     }
 }

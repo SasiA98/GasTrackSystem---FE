@@ -101,7 +101,7 @@
 
       <!-- action -->
       <ng-container *ngIf="tableAction && tableAction.length" matColumnDef="action">
-        <th mat-header-cell class="column-action" *matHeaderCellDef>Action</th>
+        <th mat-header-cell class="column-action" *matHeaderCellDef>Azioni</th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngTemplateOutlet="tableAction.length > 1 ? buttonMenu : buttonList; context: { element: this.element }"></ng-container>
         </td>

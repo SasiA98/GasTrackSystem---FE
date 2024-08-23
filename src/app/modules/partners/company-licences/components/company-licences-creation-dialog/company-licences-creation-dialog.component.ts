@@ -8,6 +8,8 @@ import { CompanyLicence } from '@shared/models/company-licence.model';
 import { Company } from '@shared/models/company.model';
 import { Licence } from '@shared/models/licence.model';
 import { LicenceService } from '@shared/services/licence.service';
+import { map, Observable, of, startWith } from 'rxjs';
+import { MatOptionSelectionChange } from '@angular/material/core';
 
 
 @Component({
@@ -20,6 +22,8 @@ export class CompanyLicencesCreationDialogComponent {
   Industry = Industry;
   companies: Company[] = [];
   licences: Licence[] = [];
+  companiesOb?: Observable<Company[]> = of([]);
+  licencesOb?: Observable<Licence[]> = of([]);
 
 
   constructor(
@@ -30,10 +34,7 @@ export class CompanyLicencesCreationDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: CompanyLicence
   ) {
 
-    this.companyService.getAll().subscribe(companies => this.companies = companies);
-    this.licenceService.getAll().subscribe(licences => this.licences = licences);
-
-    this.form = this.createForm();
+   this.form = this.createForm();
     if (this.data) {
       this.form.patchValue({
         company: {
@@ -46,6 +47,16 @@ export class CompanyLicencesCreationDialogComponent {
 
       });
     }
+
+    this.companyService.getAll().subscribe(companies => {
+      this.companies = companies;
+      this.initializeCompaniesOb();
+    });
+    
+    this.licenceService.getAll().subscribe(licences => {
+      this.licences = licences;
+      this.initializeLicencesOb();
+    });
   }
 
 
@@ -90,4 +101,57 @@ export class CompanyLicencesCreationDialogComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+
+  displayFnAutocompleteCompanies(id: number) {
+    const c = this.companies.find(company => company.id === id);
+    return c ? `${c.name}` : '';
+  }
+
+  displayFnAutocompleteLicences(id: number) {
+    const c = this.licences.find(licence => licence.id === id);
+    return c ? `${c.name}` : '';
+  }
+
+  filterCompaniesByLabel(options: Company[], label: string): Company[] {    
+    const value = label.trim().toLowerCase();
+    return options.filter((option: Company) => {
+      const fullName = `${option.name.toLowerCase()}`;
+      return fullName.includes(value);
+    });
+  }
+
+  filterLicencesByLabel(options: Licence[], label: string): Licence[] {    
+    const value = label.trim().toLowerCase();
+    return options.filter((option: Licence) => {
+      const fullName = `${option.name.toLowerCase()}`;
+      return fullName.includes(value);
+    });
+  }
+
+  
+  initializeCompaniesOb() : void {
+      this.companiesOb = this.form.get('company')?.get('id')?.valueChanges.pipe(
+      startWith(''),
+      map((value: string|Company) => {
+        if (typeof value === 'string') {
+          return this.filterCompaniesByLabel(this.companies, value);
+        }
+        return this.companies;
+      }));
+  }
+
+
+  initializeLicencesOb() : void {
+    
+    this.licencesOb = this.form.get('licence')?.get('id')?.valueChanges.pipe(
+    startWith(''),
+    map((value: string|Company) => {
+      if (typeof value === 'string') {
+        return this.filterLicencesByLabel(this.licences, value);
+      }
+      return this.licences;
+    }));
+  }
+  
 }

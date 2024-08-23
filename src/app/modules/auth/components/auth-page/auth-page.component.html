@@ -19,9 +19,6 @@
           <mat-card-title>{{ 'AUTH.TITLE' | translate }}</mat-card-title>
           <mat-card-content (keyup.enter)="onLogin()">
             <app-auth-subform [form]="form"></app-auth-subform>
-            <div class="forgot-password-link" (click)="forgotPassword()">
-              <p class="forgot-password-text">{{ 'Forgot your password?' }}</p>
-            </div>
           </mat-card-content>
           <mat-card-actions fxLayoutAlign="end center">
             <button mat-flat-button color="primary" (click)="onLogin()">
