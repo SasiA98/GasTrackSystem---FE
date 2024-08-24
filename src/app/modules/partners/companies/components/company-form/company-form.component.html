@@ -66,7 +66,16 @@
                     <input matInput formControlName="regione" maxlength="50">
                 </mat-form-field>
 
+                </div>
+                <div class="row" fxLayoutGap="5px">
+
+                <mat-form-field fxFlex check-visibility control="note">
+                    <mat-label>{{'COMPANIES.FIELDS.NOTE' | translate}}</mat-label>
+                    <input matInput formControlName="note" maxlength="255">
+                </mat-form-field>
+
             </div>
+
 
             <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-5">
                 <button type="reset" mat-button color="primary" (click)="goBack()">{{"BUTTONS.BACK" | translate}}</button>

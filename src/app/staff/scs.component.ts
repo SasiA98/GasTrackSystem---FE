@@ -10,7 +10,6 @@ import { AuthService } from '@shared/services/auth/auth.service';
 import { take } from 'rxjs';
 import { Memoize } from 'typescript-memoize';
 import { RolePermissionService } from '@shared/services/role-permission.service';
-import { BreadcrumbService } from '@shared/services/breadcrumb.service';
 
 @Component({
   selector: 'app-scs',

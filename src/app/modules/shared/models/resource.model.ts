@@ -1,6 +1,7 @@
 import { BaseModel } from "src/app/base/models/base-model.model";
-import { Unit } from "./unit.model";
+
 import { Role } from "@shared/enums/role.enum";
+import { Unit } from "./unit.model";
 
 export interface Resource extends BaseModel {
   id: number;

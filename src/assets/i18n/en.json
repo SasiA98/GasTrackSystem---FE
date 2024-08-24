@@ -5,7 +5,7 @@
         "PROFILE": "Profilo",
         "SIDENAV": {
             "COMPANIES": "Punti Vendita",
-            "COMPANY_LICENCES": "Contratti",
+            "COMPANY_LICENCES": "Scadenziario",
             "LICENCES": "Documenti",
             "LISTS": "Elenco",
             "SCADENZIARIO": "Scadenziario",
@@ -81,7 +81,7 @@
     "COMPANY_LICENCES": {
         "SEARCH": {
             "TITLE": "Documenti in Scandenza",
-            "SUBTITLE": "Questa pagina colleziona tutti i documenti associate ai vari punti vendita",
+            "SUBTITLE": "Questa pagina colleziona tutti i documenti associati ai vari punti vendita",
             "SEARCH_BAR": "Cerca"
         },
         "FORM": {
@@ -113,18 +113,18 @@
             "SEARCH_BAR": "Cerca"
         },
         "FIELDS": {
-            "NAME": "NOME",
-            "NOTE": "NOTE",
-            "CODE": "COD. P.V.",
-            "ADDRESS": "INDIRIZZO",
-            "REGIONE": "REGIONE",
-            "PROVINCIA": "PROVINCIA",
-            "CITTA": "CITTA'",
-            "FIRST_EMAIL": "EMAIL PRIMARIA",
-            "SECOND_EMAIL": "EMAIL ADDIZIONALE 1",
-            "THIRD_EMAIL": "EMAIL ADDIZIONALE 2",
-            "PHONE": "TELEFONO",
-            "OWNER": "PROPRIETARIO"
+            "NAME": "Nome",
+            "NOTE": "Note",
+            "CODE": "Cod. P.V.",
+            "ADDRESS": "Indirizzo",
+            "REGIONE": "Regione",
+            "PROVINCIA": "Provincia",
+            "CITTA": "Città",
+            "FIRST_EMAIL": "Email primaria",
+            "SECOND_EMAIL": "Email addizionale 1",
+            "THIRD_EMAIL": "Email addizionale 2",
+            "PHONE": "Telefono",
+            "OWNER": "Proprietario"
         },
         "FORM": {
             "TITLE": "Punto vendita",

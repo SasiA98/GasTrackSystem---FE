@@ -3,10 +3,11 @@ import { TableAction } from '@shared/components/generic-table/config/table-actio
 
 
 export const CompanyLicenceTableAction : TableAction[] = [
-  {
+/*  {
     operation: TableOperation.EDIT,
     title: 'BUTTONS.EDIT'
   },
+*/
   {
     operation: TableOperation.DOWNLOAD,
     title: 'BUTTONS.DOWNLOAD'

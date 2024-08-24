@@ -37,38 +37,6 @@ const routes: Routes = [
             path: '',
             redirectTo: RoutesEnum.PROFILE,
             pathMatch: 'full'
-          },
-          {
-            path: RoutesEnum.USERS,
-            loadChildren: () => import('../modules/partners/users/users.module').then((m) => m.UsersModule),
-            data: {
-              title: 'USERS.SEARCH.TITLE',
-              breadcrumb: [ RoutesEnum.USERS]
-            } as BreadcrumbData
-          },
-          {
-            path: RoutesEnum.UNITS,
-            loadChildren: () => import('../modules/partners/units/units.module').then((m) => m.UnitsModule),
-            data: {
-              title: 'UNITS.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.UNITS]
-            } as BreadcrumbData
-          },
-          {
-            path: RoutesEnum.LISTS,
-            loadChildren: () => import('../modules/partners/companies/companies.module').then((m) => m.CompaniesModule),
-            data: {
-              title: 'COMPANIES.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.LISTS]
-            } as BreadcrumbData
-          },
-          {
-            path: RoutesEnum.PROJECTS,
-            loadChildren: () => import('../modules/partners/projects/projects.module').then((m) => m.ProjectsModule),
-            data: {
-              title: 'PROJECTS.SEARCH.TITLE',
-              breadcrumb: [RoutesEnum.PROJECTS]
-            } as BreadcrumbData
           }
         ]
       },
@@ -93,6 +61,19 @@ const routes: Routes = [
             loadChildren: () => import('../modules/partners/licences/licences.module').then((m) => m.LicencesModule),
             data: {
               title: 'LICENCES.SEARCH.TITLE',
+              breadcrumb: [RoutesEnum.LISTS]
+            } as BreadcrumbData
+          }
+        ]
+      },
+      {
+        path: RoutesEnum.COMPANIES,
+        children: [
+          {
+            path: RoutesEnum.LISTS,
+            loadChildren: () => import('../modules/partners/companies/companies.module').then((m) => m.CompaniesModule),
+            data: {
+              title: 'COMPANIES.SEARCH.TITLE',
               breadcrumb: [RoutesEnum.LISTS]
             } as BreadcrumbData
           }

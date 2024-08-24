@@ -15,7 +15,12 @@ export const CompanyLicencesTableColumns: Column[] = [
     attributeName: 'expiryDate',
     accent: true,
     pipeArgs: (date: Date) => {
-      return moment(date).format('DD/MM/YYYY');
+      const year = moment(date).year();
+    
+      if (year === 2100) 
+        return 'nessuna';
+      else 
+        return moment(date).format('DD/MM/YYYY');
     }
   },
   {

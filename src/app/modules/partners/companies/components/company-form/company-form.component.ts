@@ -112,7 +112,8 @@ export class CompanyFormComponent extends FormBasePageComponent<Company> {
       citta: new FormControl('', [Validators.maxLength(255)]),
       code: new FormControl('', [Validators.maxLength(20)]),
       phone: new FormControl('', [Validators.maxLength(14)]),
-      owner: new FormControl('', [Validators.maxLength(255)])
+      owner: new FormControl('', [Validators.maxLength(255)]),
+      note: new FormControl('', [Validators.maxLength(255)])
     });
   }
 

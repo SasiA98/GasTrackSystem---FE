@@ -8,7 +8,6 @@ import { ProfileService } from '@shared/services/profile.service';
 import { ToastrService } from 'ngx-toastr';
 import { EMPTY, Observable, take } from 'rxjs';
 import { FormBasePageComponent } from 'src/app/base/base-page/form-base-page.component';
-import { UserService } from 'src/app/modules/partners/users/services/user.service';
 import { PasswordMatchValidator } from '../../validators/password-match.validator';
 import { PasswordValidator } from '@shared/validators/passwordValidator';
 
@@ -25,7 +24,6 @@ export class ProfileComponent extends FormBasePageComponent<User> implements OnI
     injector: Injector,
     private readonly toastrService: ToastrService,
     private readonly profileService: ProfileService,
-    private readonly userService: UserService,
     private readonly translateService: TranslateService
   ) {
     super(injector);

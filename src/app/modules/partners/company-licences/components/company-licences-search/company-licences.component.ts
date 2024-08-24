@@ -175,6 +175,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
       if (result != undefined) {
         this.onSubmit();
         this.showSuccessMessage();
+        this.resetSearch();
       }
     });
   }
@@ -199,6 +200,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     dialogRef.afterClosed().subscribe(result => {
       this.onSubmit();
       this.showSuccessMessage();
+
     });
   }
 

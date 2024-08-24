@@ -1,11 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { Allocation } from '@shared/models/allocation.model';
-import { AllocationService } from '@shared/services/allocation.service';
 import { RolePermissionService } from '@shared/services/role-permission.service';
 import { ToastrService } from 'ngx-toastr';
-import { ROLE_VISIBILITY } from '@shared/constants/role-visibility.constants';
 import { CompanyLicence } from '@shared/models/company-licence.model';
 import { CompanyLicenceService } from '@shared/services/company-licence.service';
 

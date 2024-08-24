@@ -12,4 +12,5 @@ export interface Company extends BaseModel {
     citta: string;
     address: string;
     code: string;
+    note: string;
 }

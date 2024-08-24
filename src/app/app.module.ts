@@ -19,11 +19,9 @@ import { BaseAuthService } from './base/authentication/services/base-auth.servic
 import { BaseAuthFacadeService } from './base/authentication/services/facade/base-auth-facade.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { ProjectDeleteDialogComponent } from './modules/partners/projects/components/project-delete-dialog/project-delete-dialog.component';
-import { TimesheetDeleteDialogComponent } from './modules/partners/timesheet/components/timesheet-delete-dialog/timesheet-delete-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, ProjectDeleteDialogComponent, TimesheetDeleteDialogComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
