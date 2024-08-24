@@ -1,24 +1,21 @@
-export const apiUrl = 'https://scs-springcloud-scs-app.azuremicroservices.io';
-
-export const daggerboard = 'https://localhost:443';
+export const apiUrl = 'http://www.oilsistems.it:8080';
 
 export const environment = {
   production: false,
   endpoints: {
     auth: `${apiUrl}/authentication`,
+    password: `${apiUrl}/password/`,
     users: `${apiUrl}/users/`,
     profile:  `${apiUrl}/profile/`,
-    units: `${apiUrl}/units/`,
-    products: `${apiUrl}/products/`,
-    sbom: `${apiUrl}/sbom/`,
-    vulnerability: `${apiUrl}/vulnerabilities/`,
-    vulnerabilityNotifications: `${apiUrl}/vulnerability-notifications/`,
-    packages: `${apiUrl}/packages/`,
+    companies: `${apiUrl}/companies/`,
+    licences: `${apiUrl}/licences/`,
+    resources: `${apiUrl}/resources/`,
+    companyLicences: `${apiUrl}/company-licences/`,
+    version: `${apiUrl}/version/`,
     roles: `${apiUrl}/roles/`,
-    sectorCategory: `${apiUrl}/sectorcategory/`,
   },
   jwt: {
-    allowedDomain: [apiUrl, apiUrl.replace('https://', '')],
+    allowedDomain: [apiUrl, apiUrl.replace('http://', '')],
     refresh: {
       minutesBeforeTokenExpiration: 8
     }
