@@ -34,20 +34,10 @@ const routes: Routes = [
         path: RoutesEnum.COMPANIES,
         children: [
           {
-            path: '',
-            redirectTo: RoutesEnum.PROFILE,
-            pathMatch: 'full'
-          }
-        ]
-      },
-      {
-        path: RoutesEnum.COMPANY_LICENCES,
-        children: [
-          {
             path: RoutesEnum.LISTS,
-            loadChildren: () => import('../modules/partners/company-licences/company-licences.module').then((m) => m.CompanyLicencesModule),
+            loadChildren: () => import('../modules/partners/companies/companies.module').then((m) => m.CompaniesModule),
             data: {
-              title: 'COMPANY_LICENCES.SEARCH.TITLE',
+              title: 'COMPANIES.SEARCH.TITLE',
               breadcrumb: [RoutesEnum.LISTS]
             } as BreadcrumbData
           }
@@ -67,13 +57,13 @@ const routes: Routes = [
         ]
       },
       {
-        path: RoutesEnum.COMPANIES,
+        path: RoutesEnum.COMPANY_LICENCES,
         children: [
           {
             path: RoutesEnum.LISTS,
-            loadChildren: () => import('../modules/partners/companies/companies.module').then((m) => m.CompaniesModule),
+            loadChildren: () => import('../modules/partners/company-licences/company-licences.module').then((m) => m.CompanyLicencesModule),
             data: {
-              title: 'COMPANIES.SEARCH.TITLE',
+              title: 'COMPANY_LICENCES.SEARCH.TITLE',
               breadcrumb: [RoutesEnum.LISTS]
             } as BreadcrumbData
           }

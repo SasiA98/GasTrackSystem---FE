@@ -25,6 +25,7 @@ import { CompanyLicencesCreationDialogComponent } from '../company-licences-crea
 import { TableOperation } from '@shared/components/generic-table/config/table-operation';
 import { CompanyLicencesSendEmailDialogComponent } from '../company-licences-send-email-dialog/company-licences-send-email-dialog.component';
 import { CompanyLicencesUploadDialogComponent } from '../company-licences-upload-dialog/company-licences-upload-dialog.component';
+import { CompanyLicencesDeleteDialogComponent } from '../company-licences-delete-dialog/company-licences-delete-dialog.component';
 
 
 
@@ -181,13 +182,14 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
   }
 
   onActionClick(model: any, operation: number) {
-    
+
     console.log(operation);
     switch (operation) {
       case TableOperation.EDIT: this.onDetailClick(model); break;
       case TableOperation.SEND_EMAIL: this.onSendEmailClick(model); break;
       case TableOperation.UPLOAD: this.onUploadDocumentClick(model); break;
       case TableOperation.DOWNLOAD: this.onDownloadDocumentsClick(model); break;
+      case TableOperation.DELETE: this.onDeleteClick(model); break;
     }
   }
 
@@ -221,7 +223,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
       (blob: Blob) => {
         const url = window.URL.createObjectURL(blob);
         const filename = this.getFileNameFromUrl(companyLicence);
-    
+
         var linkToFile = document.createElement('a');
         linkToFile.download = filename;
         linkToFile.href = url;
@@ -233,7 +235,7 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
         console.error('Error:', error);
       }
     );
-    
+
   }
 
 
@@ -253,6 +255,15 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
     });
   }
 
+  onDeleteClick(companyLicence: CompanyLicence) {
+    const dialogRef = this.dialog.open(CompanyLicencesDeleteDialogComponent, {
+      data: companyLicence
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.onSubmit();
+    });
+  }
 
   startInterval() {
     this.clearInterval(); // Cancella il timer precedente se esiste

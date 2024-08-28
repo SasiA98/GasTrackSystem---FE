@@ -25,6 +25,10 @@ export class CompanyLicenceService extends HttpBaseService<CompanyLicence> {
     return this.request<CompanyLicence>(`${id}/send-email`, METHODS.POST);
   }
 
+  deleteById(id: string | number | undefined) : Observable<CompanyLicence> {
+    return this.request<CompanyLicence>(`${id}/`, METHODS.DELETE);
+  }
+
 
   private getAuthHeaders(): Headers {
   

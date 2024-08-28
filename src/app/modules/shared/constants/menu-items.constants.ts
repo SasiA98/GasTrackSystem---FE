@@ -19,20 +19,6 @@ export const MENU_ITEMS = [
       ]
     },
     {
-      title: 'MENU.SIDENAV.COMPANY_LICENCES',
-      icon: 'insert_chart',
-      content: RoutesEnum.LISTS,
-      permission: ROLE_VISIBILITY.EVERYBODY,
-      subMenu: [ {
-        title: 'MENU.SIDENAV.LISTS',
-        icon: 'contacts',
-        link: RoutesEnum.COMPANY_LICENCES + "/" + RoutesEnum.LISTS,
-        content: RoutesEnum.LISTS,
-        permission: ROLE_VISIBILITY.EVERYBODY
-      }
-    ]
-    },
-    {
       title: 'MENU.SIDENAV.LICENCES',
       icon: 'insert_chart',
       content: RoutesEnum.LISTS,
@@ -45,7 +31,21 @@ export const MENU_ITEMS = [
         permission: ROLE_VISIBILITY.EVERYBODY
       }
     ]
-    }
+    },
+     {
+       title: 'MENU.SIDENAV.COMPANY_LICENCES',
+       icon: 'insert_chart',
+       content: RoutesEnum.LISTS,
+       permission: ROLE_VISIBILITY.EVERYBODY,
+       subMenu: [ {
+         title: 'MENU.SIDENAV.LISTS',
+         icon: 'contacts',
+         link: RoutesEnum.COMPANY_LICENCES + "/" + RoutesEnum.LISTS,
+         content: RoutesEnum.LISTS,
+         permission: ROLE_VISIBILITY.EVERYBODY
+       }
+     ]
+     }
     /*
     {
       title: 'MENU.SIDENAV.TIMESHEET',
@@ -80,7 +80,7 @@ export const MENU_ITEMS = [
         link: RoutesEnum.GANTT + "/" + RoutesEnum.RESOURCE_GANT_OVERVIEW,
         content: RoutesEnum.RESOURCE_GANT_OVERVIEW,
         permission: ROLE_VISIBILITY.GANTT
-      }, 
+      },
       {
         title: 'MENU.SIDENAV.PROJECTS_GANT_OVERVIEW',
         icon: 'table_chart',
@@ -115,7 +115,7 @@ export const MENU_ITEMS = [
         link: RoutesEnum.IMPORT_OVERVIEW + "/" + RoutesEnum.IMPORT,
         content: RoutesEnum.IMPORT,
         permission: ROLE_VISIBILITY.IMPORT
-      }, 
+      },
       {
         title: 'MENU.SIDENAV.IMPORT_RESOURCES',
         icon: 'cloud_upload',

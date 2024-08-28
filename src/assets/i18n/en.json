@@ -5,8 +5,8 @@
         "PROFILE": "Profilo",
         "SIDENAV": {
             "COMPANIES": "Punti Vendita",
-            "COMPANY_LICENCES": "Scadenziario",
             "LICENCES": "Documenti",
+            "COMPANY_LICENCES": "Scadenziario",
             "LISTS": "Elenco",
             "SCADENZIARIO": "Scadenziario",
             "ELENCO_SCADENZIARIO": "Elenco Scadenziario",
@@ -77,7 +77,7 @@
         "ELEMENTS_FOR_PAGE": "Elementi per pagina",
         "PAGE": "Pagina"
     },
-   
+
     "COMPANY_LICENCES": {
         "SEARCH": {
             "TITLE": "Documenti in Scandenza",

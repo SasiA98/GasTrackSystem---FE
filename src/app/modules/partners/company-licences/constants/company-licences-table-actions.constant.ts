@@ -19,5 +19,9 @@ export const CompanyLicenceTableAction : TableAction[] = [
   {
     operation: TableOperation.SEND_EMAIL,
     title: 'BUTTONS.SEND_EMAIL'
-  }
+  },
+   {
+     operation: TableOperation.DELETE,
+     title: 'BUTTONS.DELETE'
+   }
 ];
