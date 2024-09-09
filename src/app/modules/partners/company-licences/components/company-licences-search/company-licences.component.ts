@@ -142,14 +142,22 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
   }
 
 
-  private getExpiryDateOperand(date: Date): AdvancedSearchSimpleCriteria {
-
+  private getExpiryDateOperand(date: Date): AdvancedSearchCriteria {
     return {
-        field: 'expiryDate',
-        value: date,
-        operator: AdvancedSearchOperator.IS_DATE_GTE
-    }
+          operandOne: {
+            field: 'expiryDate',
+            value: date,
+            operator: AdvancedSearchOperator.IS_DATE_GTE
+          },
+          operandTwo: {
+            field: 'expiryDate',
+            value: 'null',
+            operator: AdvancedSearchOperator.IS_NULL
+          },
+          operator: 'OR',
+    };
   }
+
 
   private getNameOperand(name: String): AdvancedSearchCriteria {
     return {
