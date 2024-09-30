@@ -184,7 +184,6 @@ export class CompanyLicencesSearchComponent extends AdvancedSearchBasePageCompon
       if (result != undefined) {
         this.onSubmit();
         this.showSuccessMessage();
-        this.resetSearch();
       }
     });
   }
